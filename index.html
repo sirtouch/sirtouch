@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>SiR私有云</title>
+		<script language="javascript">
+
+function onlogin()
+{
+	// TODO check login form sanity
+	$.ajax({
+		type: "POST",
+		url: "http://192.168.1.32/auth/",
+		contentType:"application/json",
+		//dataType: "jsonp",
+        //crossDomain: true,
+		data: {usrId:"zhangyuyan",usrPwd:""}
+		}
+		);
+}
+		</script>
+    </head>
+    <body>
+        <div class="app">
+			<div class="logo">
+				<img src="img/sir-logo.svg" style="width:200px"/>
+			</div>
+
+<!--            <div id="deviceready" class="blink">-->
+<!--                <p class="event listening">Connecting to Device</p>-->
+<!--                <p class="event received">Device is Ready</p>-->
+<!--            </div>-->
+
+			<div>
+				<form id="loginform" class="loginform" onsubmit="//javascript:onlogin();">
+					<div class="loginfield">
+						登录名：<input id="loginname" name="loginname" type="text"/>
+					</div>
+					<div class="loginfield">
+						密　码：<input id="password" name="password" type="password"/>
+					</div>
+					<div class="loginfield">
+						<input name="autologin" type="checkbox" value="1"/>自动登录
+					</div>
+					
+					<button type="button" onclick="javascript:onlogin();">登录</button>
+				</form>
+			</div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile.js"></script>
+		<script type="text/javascript">
+$.support.cors=true;
+$.mobile.allowCrossDomainPages=true;
+		
+		</script>
+    </body>
+</html>
