@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>Cmail Mobile Online System 1.0</title>
+
+		<meta name="description" content="" />
+		<meta name="author" content="James.bell" />
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+		
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+        <!--Link Style-->
+        <link type="text/css" rel="Stylesheet" href="../css/jquery.mobile-1.4.5.min.css" />
+        <link type="text/css" rel="Stylesheet" href="../css/sir.mobile.custom.css" />
+        <link type="text/css" rel="Stylesheet" href="css/mobile-style.css" />
+
+        <!--Link Javascript-->
+        <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+
+	</head>
+
+	<body>
+
+        <div data-role="page" class="ui-page ui-page-theme-a">
+
+            <div data-role="header" class="ui-header ui-bar-inherit">
+                <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
+	            <h1 class="ui-title" role="heading" aria-level="1">写邮件</h1>
+                <!--<a href="EditerMail.html" class="ui-btn-right ui-btn ui-icon-carat-r ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Next</a>-->
+            </div>            
+
+	        <div role="main" class="ui-content ui-index-content ui-editor-mail ui-padding0px-content">
+                <table class="EMCInfor" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td>收件人：</td>
+                        <td><input type="text" value="" /></td>
+                        <td><a href="#" class="ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all">No text</a></td>
+                    </tr>
+                    <tr>
+                        <td>抄送：</td>
+                        <td><input type="text" value="" /></td>
+                        <td><a href="#" class="ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all">No text</a></td>
+                    </tr>
+                    <tr>
+                        <td>暗送：</td>
+                        <td><input type="text" value="" /></td>
+                        <td><a href="#" class="ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all">No text</a></td>
+                    </tr>
+                    <tr>
+                        <td>主题：</td>
+                        <td><input type="text" value="" /></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a class="AddOut" href="#"><font>添加附件</font></a></td>
+                        <td><input type="text" value="单个文件大小不超过5M" /></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div class="EMCText">
+                    <textarea class="EMCTinto" rows=""></textarea>
+                </div>
+            </div>
+
+	    </div>
+
+	</body>
+</html>

@@ -1,0 +1,387 @@
+﻿
+html,body,table, div, a
+{
+    margin:0; padding:0;
+    font-family:"Microsoft Tai Le","Microsoft YaHei","Hiragino Sans GB","Hiragino Sans GB W3","微软雅黑",tahoma,arial,simsun;
+}
+
+.MobilePage{background:#3a5880;}
+
+.ContPage{background:#f1f1f1;}
+    .ContPage .ui-content
+    {
+        padding: 0;
+    }
+
+.logo
+{
+    padding:8% 0; text-align:center; clear:both;
+}
+    .logo img{ width:50%;}
+
+/* Login Box Style */
+.loginbox
+{
+    padding:0; margin:0; text-align:left; clear:both;
+}
+    .loginbox .ui-corner-all { -webkit-border-radius:.2em; border-radius:.2em; }
+    .loginbox .ui-body-c{border:0;}
+    
+    .loginbox input[type="text"]{padding: 0.4em 0;}
+    .loginbox div.ui-input-text{ margin: 1em 0;}
+    
+    .loginbox div.checkouter
+    {
+        clear:both; margin:0; padding: .1em 0; overflow:hidden; color:#fff; text-shadow:none; line-height:30px;
+        font-family:"Microsoft Tai Le","Microsoft YaHei","Hiragino Sans GB","Hiragino Sans GB W3","微软雅黑",tahoma,arial,simsun,"宋体";
+    }
+    .loginbox div.ui-checkbox
+    {
+        float:left; margin-right: .3em; display:inline;
+    }
+        .loginbox div.ui-checkbox input[type="checkbox"]
+        {
+            margin:0; position:static;
+        }
+    
+    .loginbox .ui-btn-corner-all{-webkit-border-radius:.2em; border-radius:.2em;}
+    .loginbox .ui-btn-up-c
+    {
+        border:0; background:#cc3428; color:#fff; text-shadow:none;
+        text-transform: uppercase; margin: 1em 0;
+    }
+    .loginbox input.EnterText{padding:.8em 0;}
+    
+        .loginbox .ui-btn-hover-c:hover { background:#a1261d; margin: 1em 0; border:0; text-transform: uppercase; }
+            .loginbox .ui-btn-hover-c:hover .ui-btn-inner
+            {
+                border:0; color:#fff; text-shadow:none;
+            }
+            
+            
+    .thislog{ clear:both; margin:0; padding:0; text-decoration:none; text-transform: uppercase;}
+        .thislog p
+        {
+            padding: .6em 0; text-align:center;
+            background:url(../images/but-bg01.png) top left repeat-x;
+            background-position:0 0;
+            color:#fff; text-shadow:none;
+            -webkit-border-radius:.2em; border-radius:.2em; text-decoration:none;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border-top:1px solid #ec4737;
+        }
+            .thislog p:hover{
+            	background:url(../images/but-bg01.png) top left repeat-x;
+            	background-position:0 -60px;
+            }
+
+/* Mobile Footer Style */
+.MobileFoot
+{
+    padding: .8em 0; text-align:center; font-size:12px; color:#eee; text-shadow:none;
+}
+
+/* Maile Header Style */
+.MailHeader
+{
+    background:linear-gradient(#3a5880, #1f2f44); padding-top:1px;
+}
+    .MailHeader .HSetting, .MailHeader .HEditMail
+    {
+        box-shadow:none; background:none; border:none;
+    }
+        .MailHeader .HSetting .ui-btn-inner, .MailHeader .HEditMail .ui-btn-inner
+        {
+            border-top:0;
+        }
+        .MailHeader .ui-btn-inner:hover
+        {
+            background:url(../images/but-bg02.png) top left repeat-x;
+            background-position:0 0;
+            border-radius:.3em;
+            border-top:1px solid #a1d2ff;
+        }
+
+
+
+/* Search Style */
+.HSearch
+{
+    float:left; clear:both; width:100%;
+    height:auto; background:linear-gradient(#eee, #dddddd);
+    border-bottom:1px solid #ccc;
+}
+    .HSearch div.ui-input-text{margin:.5em;}
+    .HSearch .ui-shadow-inset{border-radius:2em;}
+    .HSearch .ui-body-c{border:1px solid #ccc; color:#666; font-size:14px;}
+
+.MailHList
+{
+    float:left; width:100%; border-bottom:1px solid #fff;
+    clear:both; margin:0; padding:0; list-style:none;
+}
+.MhLink
+{
+    float:left; width:100%;
+    clear:both; margin:0; padding:0;
+    border-top:1px solid #fff;
+    border-bottom:1px solid #ccc;
+}
+    .MhLink:hover
+    {
+        background:url(../images/but-bg03.png) top left repeat-x;
+    }
+    .MhLink .ui-link
+    {
+        float:left; width:100%; height:18px; clear:both; padding:.8em 0;
+        text-shadow:none; text-decoration:none; color:#666;
+    }
+    .MhLink a.ui-link span
+    {
+        float:left; padding:0 .5em; font-weight:normal; line-height:18px; color:#666;
+        font-family:"Microsoft Tai Le","Microsoft YaHei","Hiragino Sans GB","Hiragino Sans GB W3","微软雅黑",tahoma,arial,simsun,"宋体";
+    }
+        .MhLink a.ui-link span font, .MhLink a.ui-link span u{float:left;}
+        .MhLink a.ui-link span u
+        {
+            text-decoration:none; color:#c93c20; padding:0 .5em;
+        }
+    .MhLink a.ui-link:hover{color:#666;}
+    .MhLink a.ui-link i.MHLico
+    {
+        float:right; margin:0 .5em;
+        width:18px; height:18px; overflow:hidden; 
+    }
+
+/* Page Icons Style */
+.MHLico01{background:url(../images/i-01.png) center center no-repeat;}
+
+
+/* Setting Style */
+.AboutUS
+{
+    margin:10px; background:#fff; padding:10px; border: 1px solid #ccc;
+    min-height:40%;
+    line-height:20px; font-size:12px; text-align:center;
+    -webkit-border-radius:.4em; border-radius:.4em;
+}
+
+.ABSList
+{
+    clear:both; margin:10px; padding:0; list-style:none;
+    overflow:hidden;
+}
+    .ABLink 
+    {
+        height:18px; margin:0; padding:.8em 0;
+        background:#fff;
+        border:1px solid #ccc; border-bottom:0;
+    }
+        .ABLink:first-child
+        {
+            -webkit-border-radius: .4em .4em 0 0;
+            border-radius: .4em .4em 0 0;
+        }
+        .ABLink:last-child
+        {
+            border-bottom:1px solid #ccc;
+            -webkit-border-radius: 0 0 .4em .4em;
+            border-radius: 0 0 .4em .4em;
+        }
+        
+        .ABLink:hover{background:url(../images/but-bg04.png) top left repeat-x;}
+        
+        .ABLink a
+        {
+            float:left; width:100%; color:#666; text-decoration: none;
+        }
+            .ABLink a font
+            {
+                float:left; padding:0 .5em; font-weight:normal; line-height:18px; color:#666;
+                font-family:"Microsoft Tai Le","Microsoft YaHei","Hiragino Sans GB","Hiragino Sans GB W3","微软雅黑",tahoma,arial,simsun,"宋体";
+            }
+            .ABLink a .MHLico{float:right; width:18px; height:18px; margin:0 .5em;}
+          
+.logout { padding:10px; clear:both; }
+    .logout p{box-shadow:none;}
+
+
+
+/* Editer Mail Style */
+.Edititle{
+	margin: .6em 15% .8em 15%; text-align: center;
+}
+.EHAction
+{
+    position:fixed; float:right; right:0; top:.6em; z-index:10;
+}
+    .EHAction a
+    {
+        float:left; text-decoration:none; margin:0 .5em;
+        font-family:"Microsoft Tai Le","Microsoft YaHei","Hiragino Sans GB","Hiragino Sans GB W3","微软雅黑",tahoma,arial,simsun,"宋体";
+        font-weight:normal; color:#fff;
+    }
+        .EHAction a:last-child{margin-left:0;}
+        .EHAction a u
+        {
+            font-weight:normal; color:#fff; text-decoration:none;
+            padding: .15em .5em; line-height:normal;
+            background:url(../images/but-bg02.png) top left repeat-x;
+            background-position:0 0;
+            border-top:1px solid #a1d2ff;
+            -webkit-border-radius: .2em;
+            border-radius: .2em;
+        }
+        .EHAction a u:hover{
+        	background:url(../images/but-bg02.png) top left repeat-x;
+            background-position:0 -60px;
+        	border-top:1px solid #81b6e6;
+        }
+
+.ContEdit{ background:#fff;}
+
+.EMCInfor
+{
+    float:left; clear:both; width:100%; background:#fff;
+    font-family:"Microsoft Tai Le","Microsoft YaHei","Hiragino Sans GB","Hiragino Sans GB W3","微软雅黑",tahoma,arial,simsun,"宋体";
+}
+    .EMCInfor td
+    {
+        border-bottom:1px solid #ccc;
+    }
+    .EMCInfor tr td:first-child{ width:70px; padding:.3em; background:#eee; border-right:1px solid #ccc;}
+    
+    .EMCInfor tr td:last-child{ width:18px; padding:.5em;}
+    
+    .EMCInfor td div.ui-input-text
+    {
+        padding:0 .5em; margin:0; box-shadow:0; background:#fff;
+    }
+    .EMCInfor td div.ui-shadow-inset{box-shadow:none;}
+    .EMCInfor td div.ui-body-c{border:0;}
+    .EMCInfor td div.ui-corner-all{border-radius:0;}
+    .EMCInfor td div input[type="text"]{font-size:14px; color:#666; background:#fff; padding:.65em 0;}
+
+    .EMCInfor td .EMicon
+    {
+        float:left; width:18px; height:18px; text-decoration:none; overflow:hidden;
+        background:url(../images/i-05.png) top center no-repeat;
+        background-position:0 0;
+    }
+        .EMCInfor td .EMicon:hover
+        {
+            float:left; width:18px; height:18px; overflow:hidden;
+            background:url(../images/i-05.png) top center no-repeat;
+            background-position:0 -18px;
+        }
+    .EMCInfor td .AddOut
+    {
+        float:left; text-decoration:none; overflow:hidden; font-size:14px;
+        padding:.3em .5em; text-shadow:0;
+        background:url(../images/but-bg02.png) top left repeat-x;
+        background-position:0 0;
+        -webkit-border-radius: .2em;
+        border-radius: .2em; 
+    }
+        .EMCInfor td .AddOut:hover
+        {
+            background:url(../images/but-bg02.png) top left repeat-x;
+        	background-position:0 -64px; 
+        }
+        .EMCInfor td .AddOut font
+        {
+            float:left; width:100%; color:#fff; font-weight:normal; text-shadow:none;
+        }
+        
+
+.EMCText
+{
+    padding:10px; clear:both; text-align:left;
+}
+    .EMCText textarea
+    {
+        margin:0; padding:.5em; box-shadow:none; background:#fff;
+        text-align:left;
+        -webkit-border-radius: .4em; 
+        border-radius: .4em; min-height:240px;
+    }
+
+
+
+/* Receive Box Style */
+.ReceAll
+{
+    float:left; clear:both; width:100%; margin:0; padding:0; overflow:hidden;
+    border-bottom:1px solid #fff;
+}
+    .ReceList
+    {
+        float:left; width:100%; clear:both; margin:0; padding:0; height:46px; overflow:hidden;
+        border-top:1px solid #fff; border-bottom:1px solid #ccc;
+    }
+        .ReceList:hover{background:linear-gradient(#eee, #dddddd);}
+        
+        .ReceList .RLink { float:left; clear:both; width:100%; padding:0; }
+        
+        .RLi
+        {
+            float:left; width:30px; height:30px; margin:7px 0; overflow:hidden;
+        }
+            .RLicon{background:url(../images/i-06.png) left center no-repeat;}
+            
+            .SDicon{background:url(../images/i-07.png) left center no-repeat;}
+            
+            .DFicon{background:url(../images/i-08.png) left center no-repeat;}
+            
+            .DELicon{background:url(../images/i-09.png) left center no-repeat;}
+        
+        .RLt
+        {
+            float:left; width:70%; height:44px; overflow:hidden;
+        }
+            .RLt span, .RLt u{ float:left; clear:both; width:100%; overflow:hidden;}
+            
+            .RLt span { color:#666; font-size:12px; line-height:24px; }
+            .RLt u{color:#000; font-size:14px; line-height:16px; text-decoration:none;}
+        .RRi
+        {
+            float:right; width:18px; height:18px; margin:13px .5em;
+            background:url(../images/i-01.png) left center no-repeat;
+        }
+
+/* Mail Contents Style */
+.MConts
+{
+    float:left; clear:both; width:100%; background:#fff;
+}
+    .MConts td{ padding:.5em; border-bottom:1px solid #ccc;}
+    .MConts tr td:first-child{ background:#eee; border-right:1px solid #ccc; width:70px;}
+    .MConts tr td:last-child{ font-size:14px; color:#666;}
+ .mailcontbg{ background:#fff;}   
+.MCinfouter
+{
+    padding:0;
+}
+
+.MCinfor
+{
+    clear:both; padding:.5em; background:#fff; min-height:240px;
+    font-size:14px; color:#000; line-height:22px; border-bottom:1px solid #ddd;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
