@@ -25,37 +25,78 @@
     <link rel="stylesheet" type="text/css" href="css/sir.mobile.custom.css" />
 
     <!-- Link JS -->
-    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    
+    <script>
+		$(document).bind("mobileinit", function()  {  
+		    $.mobile.defaultPageTransition = 'none';  
+		    $.mobile.defaultDialogTransition = 'none';  
+		});
+		
+	</script>
+	
+	<style>
+		.ui-page { 
+			backface-visibility: hidden;  
+		    -webkit-backface-visibility: hidden; /* Chrome and Safari */  
+		    -moz-backface-visibility: hidden; /* Firefox */  
+		}
+		.ui-body-c, .ui-overlay-c {
+			border: 1px solid #AAA;
+			color: #333;
+			background: #F9F9F9; 
+		}
+	</style>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="js/sir.mobile.custom.js"></script>
+	<script src="js/jquery.cookie.js"></script>
 
 </head>
 
 <body>
 
-<!-- Page -->
 <div data-role="page" class="ui-page ui-page-theme-a">
 
+	<script>
+		if (!!!$.cookie('token')) {
+			window.location.href = 'Login.html';	
+		}
+		function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+        var noticeId = getQueryString('id');
+        var noticeDetailInfo = '';
+        $.ajax({
+        	url: 'noticeDetail.php',
+        	type: 'POST',
+        	data: {noticeId: noticeId},
+        	beforeSend: function () {
+        		
+        	},
+        	success: function (response) {
+        		var noticeDetail = $.parseJSON(response);
+        		noticeDetailInfo += '<h3 class="notice-title">'+ noticeDetail.title +'</h3>';
+        		noticeDetailInfo += '<div role="main" class="ui-content ui-index-content notice-detail" style="min-height:1000px;">';
+        		noticeDetailInfo += '<a href="#" class="ui-btn ui-icon-arrow-d ui-btn-icon-right ui-corner-all annex">';
+        		noticeDetailInfo += '<span>'+ noticeDetail.attachmentName +'</span>';
+        		noticeDetailInfo += '<label>大小: <u>10</u>MB</label>';
+        		noticeDetailInfo += '</a>';
+        		noticeDetailInfo += '<p>'+ noticeDetail.content +'</p>';
+        		$('#noticeDetail').append(noticeDetailInfo);
+        		
+        	}
+        });
+	</script>
+
 	<div data-role="header" class="ui-header ui-bar-inherit">
-        <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
+        <a href="" data-rel="back" id="goBack" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
 		<h1 class="ui-title" role="heading" aria-level="1">通知-详情</h1>		
-		<!--<a href="#" data-rel="back" class="ui-btn-right ui-btn ui-icon-gear ui-btn-icon-notext ui-corner-all" data-role="button" role="button">User</a>-->
 	</div>
-    <h3 class="notice-title">通知标题</h3>
-	<div role="main" class="ui-content ui-index-content notice-detail" style="min-height:1000px;">
-        <a href="#" class="ui-btn ui-icon-arrow-d ui-btn-icon-right ui-corner-all annex">
-            <span>附件名称</span>
-            <label>大小：<u>10</u>MB</label>
-        </a>
-        <p>
-            新华网北京1月13日电 中共中央总书记、国家主席、中央军委主席习近平13日
-            上午在中国共产党第十八届中央纪律检查委员会第五次全体会议上发表重要讲话。
-            他强调，要按照全面建成小康社会、全面深化改革、全面依法治国、全面从严治党
-            的要求，坚持思想建党和制度治党，严明政治纪律和政治规矩、加强纪律建设，
-            深化纪律检查体制改革、完善党风廉政建设法规制度，落实“两个责任”、强化监
-            督执纪问责，持之以恒落实中央八项规定精神，坚决遏制腐败现象蔓延势头，坚
-            守阵地、巩固成果、深化拓展，坚定不移推进党风廉政建设和反腐败斗争。
-        </p>
+	
+	<div id="noticeDetail">
+	    
 	</div>
 
     <!-- footer -->
@@ -71,7 +112,16 @@
 	</div>
 
 </div>
-
 </body>
+
+	<script>
+		// $(function () {
+		// 	$('#goBack').click(function (event) {
+		// 		event.preventDefault();
+		// 		alert();
+		// 		window.history.back(-1);
+		// 	})
+		// })
+	</script>
 
 </html>

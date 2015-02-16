@@ -19,17 +19,49 @@
         <!--Link Style-->
         <link type="text/css" rel="Stylesheet" href="../css/jquery.mobile-1.4.5.min.css" />
         <link type="text/css" rel="Stylesheet" href="../css/sir.mobile.custom.css" />
-        <link type="text/css" rel="Stylesheet" href="css/mobile-style.css" />
+        <link type="text/css" rel="Stylesheet" href="../css/mobile-style.css" />
 
         <!--Link Javascript-->
         <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
-
+        
 	</head>
 
 	<body>
 
         <div data-role="page" class="ui-page ui-page-theme-a">
+
+            <script type="text/javascript">
+            
+                
+                $('.ui-quick-replay-btn').click(function () {
+                    $('.ui-quick-replay').slideDown('slow');
+                });
+                
+                function getQueryString(name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) return unescape(r[2]); return null;
+                }
+                var mailID = getQueryString('id');
+                var mailDetail = '';
+                $.ajax({
+                    url: '../mailDetail.php',
+                    type: 'POST',
+                    data: {id: mailID},
+                    breforeSend: function () {
+                        
+                    },
+                    success: function (response) {
+                        var response = $.parseJSON(response);
+                        $('.MConts tr').eq(0).find('td').eq(1).html(response.from);
+                        $('.MConts tr').eq(1).find('td').eq(1).html(response.to);
+                        $('.MConts tr').eq(2).find('td').eq(1).html(response.subject);
+                        $('.MConts tr').eq(3).find('td').eq(1).html(response.attachment.name + '<a href="'+ response.attachment.url +'">下载</a>');
+                    }                 
+                })
+                    
+            </script>
 
             <div data-role="header" class="ui-header ui-bar-inherit">
                 <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
@@ -41,22 +73,22 @@
                 <table class="MConts" cellpadding="0" cellspacing="0">
                     <tr>
                         <td>收件人：</td>
-                        <td>Admin@admin.com</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>抄送：</td>
-                        <td>James.bell@gmail.com</td>
+                        <td></td>
                     <tr>
                         <td>主题：</td>
-                        <td>Cmail UI Design.</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>附件：</td>
-                        <td>附件名称和大小</td>
+                        <td></td>
                     </tr>
                 </table>
                 <div class="EMCText MCinfouter">
-                    <div class="MCinfor">请帮忙修正下Cmail UI</div>
+                    <div class="MCinfor"></div>
                 </div>
                 <div class="ui-quick-replay">
                     <textarea cols="" rows="">输入回复内容！</textarea>
@@ -65,13 +97,16 @@
                     <button class="ui-btn ui-corner-all ui-quick-replay-btn">快速回复</button>
                 </p>
             </div>
+            
 
 	    </div>
 
 	</body>
+    <script>
+        $(function () {
+            $('.ui-quick-replay-btn').click(function () {
+                $('.ui-quick-replay').slideDown('slow');
+            });
+        })
+    </script>
 </html>
-<script type="text/javascript">
-    $('.ui-quick-replay-btn').click(function () {
-        $('.ui-quick-replay').slideDown('slow');
-    });
-</script>

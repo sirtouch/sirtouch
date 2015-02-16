@@ -26,8 +26,28 @@
 
     <!-- Link JS -->
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script>
+        
+        $(document).bind("mobileinit", function()  {  
+             $.mobile.defaultPageTransition = 'none';  
+             $.mobile.defaultDialogTransition = 'none';  
+        })
+        
+    </script>
+    <style>
+        .ui-page { 
+            backface-visibility: hidden;  
+            -webkit-backface-visibility: hidden; /* Chrome and Safari */  
+            -moz-backface-visibility: hidden; /* Firefox */  
+        }
+        .ui-body-c, .ui-overlay-c {
+            border: 1px solid #AAA;
+            color: #333;
+            background: #F9F9F9; 
+        }
+    </style>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
-    
+    <script src="js/jquery.cookie.js"></script>
 
 </head>
 
@@ -35,6 +55,55 @@
 
 <!-- Page -->
 <div data-role="page" class="ui-page ui-page-theme-a">
+
+    <script>
+    
+        
+        if ($.cookie('token') == null) {
+            window.location.href = 'Login.html';    
+        }
+        var type = window.location.search;
+        var type = type.substr(type.length-1, 1);
+        $.ajax({
+            url: 'contact.php',
+            data: {type: type},
+            type: 'GET',
+            beforeSend: function () {
+                $('.ui-contact-list').empty();
+            },
+            success: function (response) {
+                $('.ui-footer').hide();
+                var response = $.parseJSON(response);
+                var userList = '';
+                $.each(response, function(index, val) {
+                    // alert(parseInt(index + 1));
+                    userList += '<li>';
+                    userList += '<div class="ui-checkbox">';
+                    userList += '<label for="checkbox-'+parseInt(index + 1)+'a" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-off"></label>';
+                    userList += '<input type="checkbox" name="checkbox-'+parseInt(index + 1)+'a" id="checkbox-'+parseInt(index + 1)+'a" data-cacheval="true">';
+                    userList += '</div>';
+                    userList += '<a class="ui-contact-item-link ui-link" href="#">';
+                    userList += '<img alt="" src="'+ val.face +'" />';
+                    userList += '<h2>'+ val.name +'</h2>';
+                    userList += '<p>邮箱: <u>'+ val.email +'</u></p>';
+                    userList += '</a>';
+                    userList += '<a class="ui-contact-item-more ui-link" user-id="'+ val.id +'" href="###">详情</a>';
+                    userList += '</li>';
+                });
+                $('.ui-contact-list').append(userList);
+                
+                
+                $.each($('.ui-contact-list li'), function (index, val) {
+                    $(val).on('click', '.ui-contact-item-more', function () {
+                        window.location.href = 'Contacts-Detail.html?id=' + $(this).attr('user-id');
+                    })
+                })
+                
+            }
+        });
+        
+        
+    </script>
 
 	<div data-role="header" class="ui-header ui-bar-inherit">
         <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
@@ -45,37 +114,9 @@
         <input data-type="search" placeholder="Search">
     </div>
 	<div role="main" class="ui-content ui-index-content ui-contact-list-group">
+    
         <ul class="ui-contact-list">
-            <li>
-                <label for="checkbox-1a" class="ui-btn ui-corner-all ui-checkbox-off"></label>
-                <input type="checkbox" name="checkbox-1a" id="checkbox-1a" data-cacheval="true">
-                <a class="ui-contact-item-link" href="Contacts-Detail.html">
-                    <img alt="" src="images/album.jpg" />
-                    <h2>用户名</h2>
-                    <p>邮箱：<u>Admin@admin.com</u></p>
-                </a>
-                <a class="ui-contact-item-more" href="Contacts-Detail.html">详情</a>
-            </li>
-            <li>
-                <label for="checkbox-2a" class="ui-btn ui-corner-all ui-checkbox-off"></label>
-                <input type="checkbox" name="checkbox-2a" id="checkbox-2a" data-cacheval="true">
-                <a class="ui-contact-item-link" href="#">
-                    <img alt="" src="images/album.jpg" />
-                    <h2>用户名</h2>
-                    <p>邮箱：<u>Admin@admin.com</u></p>
-                </a>
-                <a class="ui-contact-item-more" href="#">详情</a>
-            </li>
-            <li>
-                <label for="checkbox-3a" class="ui-btn ui-corner-all ui-checkbox-off"></label>
-                <input type="checkbox" name="checkbox-3a" id="checkbox-3a" data-cacheval="true">
-                <a class="ui-contact-item-link" href="#">
-                    <img alt="" src="images/album.jpg" />
-                    <h2>用户名</h2>
-                    <p>邮箱：<u>Admin@admin.com</u></p>
-                </a>
-                <a class="ui-contact-item-more" href="#">详情</a>
-            </li>
+            
         </ul>
 	</div>
 
@@ -103,5 +144,6 @@
 </div>
 
 </body>
+    
 
 </html>

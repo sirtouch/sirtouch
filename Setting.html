@@ -23,11 +23,33 @@
     <!-- Link CSS -->
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
     <link rel="stylesheet" type="text/css" href="css/sir.mobile.custom.css" />
+    <link rel="stylesheet" href="css/mobile-style.css">
 
     <!-- Link JS -->
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script>
+		$(document).bind("mobileinit", function()  {  
+		     $.mobile.defaultPageTransition = 'none';  
+		     $.mobile.defaultDialogTransition = 'none';  
+		});
+		
+	</script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
-
+    <style>
+		.ui-page { 
+			backface-visibility: hidden;  
+		    -webkit-backface-visibility: hidden; /* Chrome and Safari */  
+		    -moz-backface-visibility: hidden; /* Firefox */  
+		}
+		.ui-body-c, .ui-overlay-c {
+			border: 1px solid #AAA;
+			color: #333;
+			background: #F9F9F9; 
+		}
+	</style>
+	<script src="js/jquery.cookie.js"></script>
+	
+	
 </head>
 
 <body>
@@ -35,27 +57,36 @@
 <!-- Page -->
 <div data-role="page" class="ui-page ui-page-theme-a">
 
+	<script>
+		$('.ui-footer').css('display', 'block');   
+		$('#logout_btn').on('click', function (event) {
+			event.preventDefault();
+			$.cookie('token', '', {expires: -1});
+			window.location.href = 'Login.html';
+		});
+		
+	</script>
+
 	<div data-role="header" class="ui-header ui-bar-inherit">
-        <!--<a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>-->
 		<h1 class="ui-title" role="heading" aria-level="1">设置</h1>		
-		<!--<a href="#" data-rel="back" class="ui-btn-right ui-btn ui-icon-gear ui-btn-icon-notext ui-corner-all" data-role="button" role="button">User</a>-->
 	</div>
+	
 	<div role="main" class="ui-content ui-index-content setting-content" style="min-height:800px;">
         <h3 class="setting-logo">
-            <img alt="" src="images/setting-logo.png" />
+            <img alt="" src="images/setting-logo.png">
         </h3>
-        <div data-role="controlgroup" class="ui-controlgroup">				
+        <div data-role="controlgroup" class="ui-controlgroup ui-controlgroup-vertical ui-corner-all"><div class="ui-controlgroup-controls ">				
 			<div class="ui-corner-all setting-item">
-                <label for="checkbox-1a" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-right ui-checkbox-off">声音提醒</label>
-                <input type="checkbox" name="checkbox-1a" id="checkbox-1a" data-cacheval="true">
+                
+                <div class="ui-checkbox"><label for="checkbox-1a" class="ui-btn ui-corner-all ui-btn-icon-right ui-checkbox-off ui-btn-inherit ui-btn-icon-left ui-first-child">声音提醒</label><input type="checkbox" name="checkbox-1a" id="checkbox-1a" data-cacheval="true"></div>
 			</div>
 			<div class="ui-corner-all setting-item">
-                <label for="checkbox-2a" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-right ui-checkbox-off">振动提醒</label>
-                <input type="checkbox" name="checkbox-2a" id="checkbox-2a" data-cacheval="true">
+                
+                <div class="ui-checkbox"><label for="checkbox-2a" class="ui-btn ui-corner-all ui-btn-icon-right ui-checkbox-off ui-btn-inherit ui-btn-icon-left ui-last-child">振动提醒</label><input type="checkbox" name="checkbox-2a" id="checkbox-2a" data-cacheval="true"></div>
 			</div>
-		</div>
+		</div></div>
         <ul data-role="listview" class="ui-listview ui-listview-inset ui-corner-all setting-listview">
-			<li>
+			<li class="ui-first-child">
                 <a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
                     <b>通知标题</b>
                 </a>
@@ -65,17 +96,17 @@
                     <b>通知标题</b>
                 </a>
 			</li>
-            <li>
+            <li class="ui-last-child">
                 <a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
                     <b>通知标题</b>
                 </a>
 			</li>
         </ul>
         <p>
-            <button class="ui-btn ui-corner-all ui-btn-blue">清理消息记录</button>
+            <button class="ui-btn-blue ui-btn ui-corner-all">清理消息记录</button>
         </p>
         <p>
-            <a href="Login.html" class="ui-btn ui-corner-all ui-btn-red">退出系统</a>
+            <a class="ui-btn ui-corner-all ui-btn-red" id="logout_btn">退出系统</a>
         </p>
 	</div>
 
@@ -90,11 +121,22 @@
 			</ul>
 		</div>
 	</div>
-
+		
+	<div class="ui-loader ui-corner-all ui-body-a ui-loader-default"></div>
+	
 </div>
 
 </body>
-
+	<script>
+		$(function () {
+			$('#logout_btn').on('click', function (event) {
+				event.preventDefault();
+				$.cookie('token', null);
+				window.location.href = 'Login.html';
+			});
+		})
+		
+	</script>
 </html>
 
 

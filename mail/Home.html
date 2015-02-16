@@ -19,9 +19,30 @@
         <!--Link Style-->
         <link type="text/css" rel="Stylesheet" href="../css/jquery.mobile-1.4.5.min.css" />
         <link type="text/css" rel="Stylesheet" href="../css/sir.mobile.custom.css" />
+        <link type="text/css" rel="Stylesheet" href="../css/mobile-style.css" />
 
         <!--Link Javascript-->
         <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+        <script>
+            $(document).bind("mobileinit", function()  {  
+                $.mobile.defaultPageTransition = 'none';  
+                $.mobile.defaultDialogTransition = 'none';  
+            });
+            
+        </script>
+        
+        <style>
+            .ui-page { 
+                backface-visibility: hidden;  
+                -webkit-backface-visibility: hidden; /* Chrome and Safari */  
+                -moz-backface-visibility: hidden; /* Firefox */  
+            }
+            .ui-body-c, .ui-overlay-c {
+                border: 1px solid #AAA;
+                color: #333;
+                background: #F9F9F9; 
+            }
+        </style>
         <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
 
 	</head>
@@ -29,9 +50,17 @@
 	<body>
 
         <div data-role="page" class="ui-page ui-page-theme-a">
-
+            
+            <script>
+                $('.ui-footer').hide();
+                $('#back').on('click', function (event) {
+                    event.preventDefault();
+                    window.location.href = '../Application.html';
+                });
+            </script>
+            
             <div data-role="header" class="ui-header ui-bar-inherit">
-                <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
+                <a id="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
 	            <h1 class="ui-title" role="heading" aria-level="1">邮件</h1>
                 <a href="EditerMail.html" class="ui-btn-right ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all" data-role="button" role="button">User</a>
             </div>            
@@ -65,7 +94,10 @@
                         </a>
 					</li>
 				</ul>
-            </div>
+            </div>  
+            <div class="ui-loader ui-corner-all ui-body-a ui-loader-default"></div>
+            
+            
 
 	    </div>
 

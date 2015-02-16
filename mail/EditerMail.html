@@ -19,7 +19,7 @@
         <!--Link Style-->
         <link type="text/css" rel="Stylesheet" href="../css/jquery.mobile-1.4.5.min.css" />
         <link type="text/css" rel="Stylesheet" href="../css/sir.mobile.custom.css" />
-        <link type="text/css" rel="Stylesheet" href="css/mobile-style.css" />
+        <link type="text/css" rel="Stylesheet" href="../css/mobile-style.css" />
 
         <!--Link Javascript-->
         <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
@@ -30,6 +30,38 @@
 	<body>
 
         <div data-role="page" class="ui-page ui-page-theme-a">
+            
+            <script>
+                function getQueryString(name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) return unescape(r[2]); return null;
+                }
+                
+                var id = getQueryString('id');
+                $.ajax({
+                    url: '../userInfo.php',
+                    type: 'POST',
+                    data: {userId: id},
+                    beforeSend: function () {
+                        
+                    },
+                    success: function (response) {
+                        if (response) {
+                            var userInfo = $.parseJSON(response);
+                            $('.EMCInfor tr').eq(0).find('td').eq(1).find('input').val(userInfo.name);   
+                        }
+                    }
+                });
+                
+                $('.EMCInfor tr').eq(0).find('td').eq(2).find('a').on('click', function(event) {
+                    event.preventDefault();
+                    window.location.href = '../Contacts.html';
+                });
+                
+                
+            </script>
+
 
             <div data-role="header" class="ui-header ui-bar-inherit">
                 <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>

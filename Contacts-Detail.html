@@ -26,7 +26,29 @@
 
     <!-- Link JS -->
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script>
+        
+        $(document).bind("mobileinit", function()  {  
+             $.mobile.defaultPageTransition = 'none';  
+             $.mobile.defaultDialogTransition = 'none';  
+        })
+        
+    </script>
+    <style>
+        .ui-page { 
+            backface-visibility: hidden;  
+            -webkit-backface-visibility: hidden; /* Chrome and Safari */  
+            -moz-backface-visibility: hidden; /* Firefox */  
+        }
+        .ui-body-c, .ui-overlay-c {
+            border: 1px solid #AAA;
+            color: #333;
+            background: #F9F9F9; 
+        }
+    </style>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+
 
 </head>
 
@@ -35,40 +57,71 @@
 <!-- Page -->
 <div data-role="page" class="ui-page ui-page-theme-a">
 
+    <script>
+    
+        $('.ui-footer').hide();
+        if (!!!$.cookie('token')) {
+            window.location.href = 'Login.html';    
+        }
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+        var userId = window.location.search;
+        var userId = getQueryString('id');
+        var userInfo = '', // 用户信息
+            userContact = ''; // 用户联系方式
+        $.ajax({
+            url: 'userInfo.php',
+            type: 'POST',
+            data: {userId: userId},
+            beforeSend: function () {
+                                
+            },
+            success: function (response) {
+                $('.ui-footer').hide();
+                var val = $.parseJSON(response);
+                
+                // 基本信息
+                userInfo += '<img alt="" src="'+ val.face +'" />' ;
+                userInfo += '<h3>'+ val.name +'</h3>';
+                userInfo += '<h4>'+ val.title +'</h4>';
+                $('.ui-user-group').append(userInfo);
+                
+                // 联系信息
+                userContact += '<li><b>移动电话: </b><a class="digital" href="#">'+ val.mobile +'</a>';
+                userContact += '<span><a class="message ui-link" href="#">message</a><a class="tel ui-link" href="#">tel</a></span>';
+                userContact += '</li>';
+                userContact += '<li><b>固定电话: </b><a class="digital" href="#">'+ val.phone +'</a>';
+                userContact += '<span><a class="tel ui-link" href="#">tel</a></span>';
+                userContact += '</li>';
+                userContact += '<li><b>电子邮件: </b><a class="digital" href="#">'+ val.email +'</a>';
+                userContact += '<span><a class="email ui-link" href="#" data-id="'+ val.id +'">email</a></span>';
+                userContact += '</li>';
+                $('.ui-user-infor').append(userContact);
+                
+                $('.email').on('click', function (event) {
+                    event.preventDefault();
+                    window.location.href = 'mail/EditerMail.html?id=' + $(this).attr('data-id');
+                });
+                
+            }
+        })
+        
+        
+    </script>
+
 	<div data-role="header" class="ui-header ui-bar-inherit">
         <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
 		<h1 class="ui-title" role="heading" aria-level="1">通讯录</h1>		
-		<!--<a href="#" data-rel="back" class="ui-btn-right ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Editor</a>-->
 	</div>
+    
     <div class="ui-user-group">
-        <img alt="" src="images/album.jpg" />
-        <h3>用户名</h3>
-        <h4>北京思能科贸有限公司产品经理</h4>
     </div>
+    
 	<div role="main" class="ui-content ui-index-content ui-contact-list-group">        
         <ul class="ui-user-infor">
-            <li>
-                <b>移动电话：</b>
-                <a class="digital" href="#">13012345678</a>
-                <span>
-                    <a class="message" href="#">message</a>
-                    <a class="tel" href="#">tel</a>
-                </span>
-            </li>
-            <li>
-                <b>固定电话：</b>
-                <a class="digital" href="#">+028-812345678</a>
-                <span>
-                    <a class="tel" href="#">tel</a>
-                </span>
-            </li>
-            <li>
-                <b>电子邮件：</b>
-                <a class="digital" href="#">Wocode@sohu.com</a>
-                <span>
-                    <a class="email" href="#">email</a>
-                </span>
-            </li>
         </ul>
 	</div>
 

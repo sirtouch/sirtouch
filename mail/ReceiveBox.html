@@ -13,16 +13,36 @@
 
 		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
 		
-		<link rel="shortcut icon" href="images/favicon.ico" />
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="shortcut icon" href="../images/favicon.ico" />
+		<link rel="apple-touch-icon" href="../apple-touch-icon.png" />
 
         <!--Link Style-->
         <link type="text/css" rel="Stylesheet" href="../css/jquery.mobile-1.4.5.min.css" />
         <link type="text/css" rel="Stylesheet" href="../css/sir.mobile.custom.css" />
-        <link type="text/css" rel="Stylesheet" href="css/mobile-style.css" />
+        <link type="text/css" rel="Stylesheet" href="../css/mobile-style.css" />
 
         <!--Link Javascript-->
         <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+        <script>
+            $(document).bind("mobileinit", function()  {  
+                $.mobile.defaultPageTransition = 'none';  
+                $.mobile.defaultDialogTransition = 'none';  
+            });
+            
+        </script>
+        
+        <style>
+            .ui-page { 
+                backface-visibility: hidden;  
+                -webkit-backface-visibility: hidden; /* Chrome and Safari */  
+                -moz-backface-visibility: hidden; /* Firefox */  
+            }
+            .ui-body-c, .ui-overlay-c {
+                border: 1px solid #AAA;
+                color: #333;
+                background: #F9F9F9; 
+            }
+        </style>
         <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
 
 	</head>
@@ -30,6 +50,43 @@
 	<body>
 
         <div data-role="page" class="ui-page ui-page-theme-a">
+        
+            <script>
+                $('.ui-footer').hide();
+                var mailList = ''; 
+                $.ajax({
+                    url: '../mailList.php',
+                    type: 'GET',
+                    breforeSend: function() {
+                        
+                    },
+                    success: function (response) {
+                        if (response) {
+                            var response = $.parseJSON(response);
+                            $.each(response, function (index, val) {
+                                mailList += '<div class="ReceList">';
+                                mailList += '<a class="RLink ui-link" data-id="'+ val.id +'">';
+                                mailList += '<i class="RLi RLicon">&nbsp;</i>';
+                                mailList += '<div class="RLt">';
+                                mailList += '<span>'+ val.from +'/'+ val.name +'</span>';
+                                mailList += '<u>'+ val.subject +'</u>';
+                                mailList += '</div><i class="RRi"></i>';
+                                mailList += '</a></div>';
+                            });   
+                        }
+                        $('.ReceAll').append(mailList);
+                        
+                        $.each($('.RLink'), function (index, element) {
+                             $(element).on('click', function (event) {
+                                 event.preventDefault();
+                                 window.location.href = 'MailConts.html?id=' + $(this).attr('data-id');
+                             });
+                        });
+                        
+                    }
+                });
+                
+            </script>
 
             <div data-role="header" class="ui-header ui-bar-inherit">
                 <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
@@ -38,59 +95,11 @@
             </div>            
 
 	        <div role="main" class="ui-content ui-index-content ui-padding0px-content">                
-                <div class="ReceAll">
-                    <div class="ReceList">
-                        <a class="RLink" href="MailConts.html">
-                            <i class="RLi RLicon">&nbsp;</i>
-                            <div class="RLt">
-                                <span>发件人邮箱/姓名</span>
-                                <u>邮件主题</u>
-                            </div>                            
-                            <i class="RRi"></i>
-                        </a>
-                    </div>
-                    <div class="ReceList">
-                        <a class="RLink" href="#">
-                            <i class="RLi RLicon">&nbsp;</i>
-                            <div class="RLt">
-                                <span>发件人邮箱/姓名</span>
-                                <u>邮件主题</u>
-                            </div>                            
-                            <i class="RRi"></i>
-                        </a>
-                    </div>
-                    <div class="ReceList">
-                        <a class="RLink" href="#">
-                            <i class="RLi RLicon">&nbsp;</i>
-                            <div class="RLt">
-                                <span>发件人邮箱/姓名</span>
-                                <u>邮件主题</u>
-                            </div>                            
-                            <i class="RRi"></i>
-                        </a>
-                    </div>
-                    <div class="ReceList">
-                        <a class="RLink" href="#">
-                            <i class="RLi RLicon">&nbsp;</i>
-                            <div class="RLt">
-                                <span>发件人邮箱/姓名</span>
-                                <u>邮件主题</u>
-                            </div>                            
-                            <i class="RRi"></i>
-                        </a>
-                    </div>
-                    <div class="ReceList">
-                        <a class="RLink" href="#">
-                            <i class="RLi RLicon">&nbsp;</i>
-                            <div class="RLt">
-                                <span>发件人邮箱/姓名</span>
-                                <u>邮件主题</u>
-                            </div>                            
-                            <i class="RRi"></i>
-                        </a>
-                    </div>
-                </div>
+                <div class="ReceAll"></div>
             </div>
+            
+           
+            
 
 	    </div>
 

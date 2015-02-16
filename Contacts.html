@@ -23,23 +23,61 @@
     <!-- Link CSS -->
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
     <link rel="stylesheet" type="text/css" href="css/sir.mobile.custom.css" />
+    <link rel="stylesheet" href="css/mobile-style.css">
 
     <!-- Link JS -->
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script>
+   		
+		$(document).bind("mobileinit", function()  {  
+		     $.mobile.defaultPageTransition = 'none';  
+		     $.mobile.defaultDialogTransition = 'none';  
+		})
+		
+	</script>
+    <style>
+		.ui-page { 
+			backface-visibility: hidden;  
+		    -webkit-backface-visibility: hidden; /* Chrome and Safari */  
+		    -moz-backface-visibility: hidden; /* Firefox */  
+		}
+		.ui-body-c, .ui-overlay-c {
+			border: 1px solid #AAA;
+			color: #333;
+			background: #F9F9F9; 
+		}
+	</style>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="js/sir.mobile.custom.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	
 
 </head>
 
 <body>
 
 <!-- Page -->
-<div data-role="page" class="ui-page ui-page-theme-a">
+<div data-role="page" class="ui-page ui-page-theme-a" id="Contacts">
 
+	<script>
+	
+		$('.ui-footer').show();
+		
+		if ($.cookie('token') == null) {
+			window.location.href = 'Login.html';
+		}
+	
+		$.each($('.ui-listview li a'), function (index, element) {
+			$(element).click(function () {
+				window.location.href = 'Contacts-Lists.html?type=' + $(this).attr('data-type'); 
+			})
+		});
+		
+	</script>
+	
 	<div data-role="header" class="ui-header ui-bar-inherit">
         <!--<a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>-->
 		<h1 class="ui-title" role="heading" aria-level="1">通讯录</h1>		
-		<!--<a href="#add-contact-item" data-rel="popup" class="ui-btn-right ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Add</a>-->
 	</div>
     <div class="ui-input-search-box">
         <input data-type="search" placeholder="Search">
@@ -47,20 +85,10 @@
 	<div role="main" class="ui-content ui-index-content ui-contact-box">
         <ul data-role="listview" class="ui-listview ui-listview-inset">
 			<li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit ui-first-child">组织架构【1】</li>
-            <li><a href="Contacts-Lists.html" class="ui-btn ui-btn-icon-right ui-icon-carat-r">办公室</a></li>
-			<li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">人事部</a></li>
-			<li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">销售部</a></li>
-            <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">技术部</a></li>
-			<li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">组织架构【2】</li>
-            <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">办公室</a></li>
-			<li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">人事部</a></li>
-			<li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">销售部</a></li>
-            <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">技术部</a></li>
-			<li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">组织架构【2】</li>
-            <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">办公室</a></li>
-			<li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">人事部</a></li>
-			<li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">销售部</a></li>
-            <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">技术部</a></li>
+            <li><a class="ui-btn ui-btn-icon-right ui-icon-carat-r" data-type="1">办公室</a></li>
+			<li><a class="ui-btn ui-btn-icon-right ui-icon-carat-r" data-type="2">人事部</a></li>
+			<li><a class="ui-btn ui-btn-icon-right ui-icon-carat-r" data-type="3">销售部</a></li>
+            <li><a class="ui-btn ui-btn-icon-right ui-icon-carat-r" data-type="4">技术部</a></li>
 		</ul>
 	</div>
 
@@ -76,21 +104,17 @@
 		</div>
 	</div>
 
-    <!-- add contact -->
-    <!--
-    <div id="add-contact-item" class="ui-content public-layout" data-role="popup" data-theme="a">
-        <ul data-role="listview" class="ui-listview ui-listview-inset ui-corner-all">
-			<li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-plus">添加联系人</a></li>
-            <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-plus">添加联系组</a></li>
-        </ul>
-    </div>
-    -->
-
+    <div class="ui-loader ui-corner-all ui-body-a ui-loader-default"></div>
 </div>
 
-
-
-
 </body>
-
+	<script>
+		$(function () {
+			$.each($('.ui-listview li a'), function (index, element) {
+				$(element).click(function () {
+					window.location.href = 'Contacts-Lists.html?type=' + $(this).attr('data-type'); 
+				})
+			});
+		})
+	</script>
 </html>
