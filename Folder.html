@@ -28,6 +28,7 @@
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="js/sir.mobile.custom.js"></script>
+    <script src="js/jquery.cookie.js"></script>
 
 </head>
 
@@ -38,6 +39,9 @@
     
     <script>
         $('.ui-footer').hide();
+        if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
+            window.location.href = 'Login.html';
+        }
     </script>
 
 	<div data-role="header" class="ui-header ui-bar-inherit">

@@ -58,6 +58,11 @@
 <div data-role="page" class="ui-page ui-page-theme-a">
 
 	<script>
+		
+		if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
+			window.location.href = 'Login.html';
+		}
+	
 		$('.ui-footer').css('display', 'none');   
 		var now = new Date();
 		var year = now.getFullYear(),

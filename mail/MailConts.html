@@ -24,7 +24,7 @@
         <!--Link Javascript-->
         <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
-        
+        <script src="../js/jquery.cookie.js"></script>
 	</head>
 
 	<body>
@@ -32,12 +32,14 @@
         <div data-role="page" class="ui-page ui-page-theme-a">
 
             <script type="text/javascript">
-            
+                
+                if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
+                    window.location.href = '../Login.html';    
+                }
                 
                 $('.ui-quick-replay-btn').click(function () {
                     $('.ui-quick-replay').slideDown('slow');
                 });
-                
                 function getQueryString(name) {
                     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
                     var r = window.location.search.substr(1).match(reg);
@@ -64,7 +66,7 @@
             </script>
 
             <div data-role="header" class="ui-header ui-bar-inherit">
-                <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
+                <a data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
 	            <h1 class="ui-title" role="heading" aria-level="1">Admin@admin.com</h1>
                 <a href="#" class="ui-btn-right ui-btn ui-icon-carat-r ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Next</a>
             </div>            
@@ -78,6 +80,7 @@
                     <tr>
                         <td>抄送：</td>
                         <td></td>
+                    </tr>
                     <tr>
                         <td>主题：</td>
                         <td></td>
@@ -97,15 +100,21 @@
                     <button class="ui-btn ui-corner-all ui-quick-replay-btn">快速回复</button>
                 </p>
             </div>
-            
 
 	    </div>
+        
 
 	</body>
     <script>
         $(function () {
             $('.ui-quick-replay-btn').click(function () {
                 $('.ui-quick-replay').slideDown('slow');
+            });
+            
+            $('#goback').on('click', function(event) {
+                event.preventDefault();
+                /* Act on the event */
+                window.location.href = 'ReceiveBox.html';
             });
         })
     </script>

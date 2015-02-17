@@ -59,7 +59,7 @@
     <script>
     
         
-        if ($.cookie('token') == null) {
+        if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
             window.location.href = 'Login.html';    
         }
         var type = window.location.search;

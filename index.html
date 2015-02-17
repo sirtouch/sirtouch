@@ -32,7 +32,6 @@
 		$(document).bind("mobileinit", function()  {  
 		    $.mobile.defaultPageTransition = 'none';  
 		    $.mobile.defaultDialogTransition = 'none';  
-		    // $.mobile.hidePageLoadingMsg();
 		});
 		
 	</script>
@@ -61,17 +60,17 @@
 <div data-role="page" class="ui-page ui-page-theme-a">
 
 	<script>
-
-    	$('.ui-footer').css('display', 'block');          
-		if ($.cookie('token') == null) {
-			window.location.href = 'Login.html';	
+		
+    	$('.ui-footer').css('display', 'block'); 
+		if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
+			window.location.href = 'Login.html';
 		}
 		var noticeList = '';
 		$.ajax({
 			url: 'notice.php',
 			type: 'GET',
 			beforeSend: function (){
-				
+				$('.ui-listview').empty();
 			},
 			success: function (response) {
 				var response = $.parseJSON(response);
@@ -84,12 +83,37 @@
 					 noticeList += '</li>';
 				});
 				
-				$('.ui-listview').append(noticeList);
 				
+				// if ($('.ui-listview li').length == 0) {
+					$('.ui-listview').append(noticeList);
+				// }
+					
 				$.each($('.ui-icon-carat-r'), function (index, element) {
 					$(element).on('click', function (event) {
 						event.preventDefault();
 						window.location.href = 'Notice-Detail.html?id=' + $(this).attr('data-id');
+					});
+				});
+				
+				$('.ui-block-b').on('click', function(event) {
+					event.preventDefault();
+					$.mobile.changePage('Contacts.html', {
+						reloadPage: true,
+						reverse: false
+					});
+				});
+				$('.ui-block-c').on('click', function(event) {
+					event.preventDefault();
+					$.mobile.changePage('Application.html', {
+						reloadPage: true,
+						reverse: false
+					});
+				});
+				$('.ui-block-d').on('click', function(event) {
+					event.preventDefault();
+					$.mobile.changePage('Setting.html', {
+						reloadPage: false,
+						reverse: false
 					});
 				});
 			}
@@ -104,7 +128,7 @@
 	
 	<div role="main" class="ui-content ui-index-content margin-top-bottom-10px">
         <ul data-role="listview" class="ui-listview">
-			
+				
 		</ul>
 	</div>
 	
@@ -112,10 +136,10 @@
 	<div data-role="footer" class="ui-footer ui-footer-fixed ui-bar-inherit">
 		<div class="ui-navbar">
 			<ul class="ui-grid-c">
-				<li class="ui-block-a"><a href="index.html" data-transition="none" data-icon="grid" class="ui-link ui-btn ui-icon-clock ui-btn-icon-top ui-btn-active">通知</a></li>
-				<li class="ui-block-b"><a href="Contacts.html" data-transition="none" data-icon="star" class="ui-link ui-btn ui-icon-user ui-btn-icon-top">通讯录</a></li>
-				<li class="ui-block-c"><a href="Application.html" data-transition="none" data-icon="gear" class="ui-link ui-btn ui-icon-grid ui-btn-icon-top">应用</a></li>
-                <li class="ui-block-d"><a href="Setting.html" data-transition="none" data-icon="gear" class="ui-link ui-btn ui-icon-gear ui-btn-icon-top">设置</a></li>
+				<li class="ui-block-a"><a data-transition="none" data-icon="grid" class="ui-link ui-btn ui-icon-clock ui-btn-icon-top ui-btn-active">通知</a></li>
+				<li class="ui-block-b"><a data-transition="none" data-icon="star" class="ui-link ui-btn ui-icon-user ui-btn-icon-top">通讯录</a></li>
+				<li class="ui-block-c"><a data-transition="none" data-icon="gear" class="ui-link ui-btn ui-icon-grid ui-btn-icon-top">应用</a></li>
+                <li class="ui-block-d"><a data-transition="none" data-icon="gear" class="ui-link ui-btn ui-icon-gear ui-btn-icon-top">设置</a></li>
 			</ul>
 		</div>
 	</div>
@@ -126,9 +150,41 @@
 <script>
 
 	$(function () {
-		$('.ui-icon-carat-r').click(function(event) {
-			alert();
-		});	
+		
+		if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
+			window.location.href = 'Login.html';
+				
+		}
+		
+		$.each($('.ui-icon-carat-r'), function (index, element) {
+			$(element).on('click', function (event) {
+				event.preventDefault();
+				window.location.href = 'Notice-Detail.html?id=' + $(this).attr('data-id');
+			});
+		});
+		
+		$('.ui-block-b').on('click', function(event) {
+			event.preventDefault();
+			$.mobile.changePage('Contacts.html', {
+				reloadPage: true,
+				reverse: false
+			});
+		});
+		$('.ui-block-c').on('click', function(event) {
+			event.preventDefault();
+			$.mobile.changePage('Application.html', {
+				reloadPage: true,
+				reverse: false
+			});
+		});
+		$('.ui-block-d').on('click', function(event) {
+			event.preventDefault();
+			$.mobile.changePage('Setting.html', {
+				reloadPage: false,
+				reverse: false
+			});
+		});
+		
 	});
 	
 </script>

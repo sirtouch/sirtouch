@@ -58,8 +58,9 @@
 <div data-role="page" class="ui-page ui-page-theme-a">
 
 	<script>
-		if (!!!$.cookie('token')) {
-			window.location.href = 'Login.html';	
+	
+		if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
+			window.location.href = 'Login.html';
 		}
 		function getQueryString(name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -73,7 +74,7 @@
         	type: 'POST',
         	data: {noticeId: noticeId},
         	beforeSend: function () {
-        		
+				$('.ui-footer').hide();
         	},
         	success: function (response) {
         		var noticeDetail = $.parseJSON(response);
@@ -115,13 +116,10 @@
 </body>
 
 	<script>
-		// $(function () {
-		// 	$('#goBack').click(function (event) {
-		// 		event.preventDefault();
-		// 		alert();
-		// 		window.history.back(-1);
-		// 	})
-		// })
+		$(function () {
+        	$('.ui-footer').hide();
+			
+		})
 	</script>
 
 </html>

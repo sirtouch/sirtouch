@@ -60,7 +60,7 @@
     <script>
     
         $('.ui-footer').hide();
-        if (!!!$.cookie('token')) {
+        if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
             window.location.href = 'Login.html';    
         }
         function getQueryString(name) {

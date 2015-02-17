@@ -24,6 +24,7 @@
         <!--Link Javascript-->
         <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+        <script src="../js/jquery.cookie.js"></script>
 
 	</head>
 
@@ -32,6 +33,10 @@
         <div data-role="page" class="ui-page ui-page-theme-a">
             
             <script>
+                
+                if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
+                    window.location.href = '../Login.html';    
+                }
                 function getQueryString(name) {
                     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
                     var r = window.location.search.substr(1).match(reg);
@@ -100,6 +105,9 @@
                 <div class="EMCText">
                     <textarea class="EMCTinto" rows=""></textarea>
                 </div>
+                <p style="margin:0 1em;">
+                    <button class="ui-btn ui-corner-all">点击发送</button>
+                </p>
             </div>
 
 	    </div>
