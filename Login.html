@@ -23,6 +23,7 @@
     <!-- Link JS -->
 	<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript" src="js/sir.mobile.custom.js"></script>
     <script src="js/jquery.cookie.js"></script>
     
 </head>
@@ -63,11 +64,32 @@
     </div>
 </div>
     <script>
+$('#login_btn').on('click',function(){
+	var username = $('#email').val();
+	var password = $('#password').val();
+	var flag = false;
+	
+	var response = login(username, password);
+	console.debug(response);
+	//alert(response);
+	response = $.parseJSON(response);
+	if (response.result == 'true') {
+		$.cookie('token', response.token);
+		//alert(response.token);
+		window.location.href = 'index.html';
+	}else {
+		alert('你的用户名或密码有错!');
+	}
+});
+
+/*
         $(function(){
-            var flag = true;
-            $('#login_btn').on('click',function(){
+            //var flag = true;
+            y
                 //ajax验证账号密码正确之后执行下面这个.
                 if (flag) {
+					flag = login(username, password);
+
                     $.ajax({
                         // url: 'your login api address',
                         url: 'login.php', 
@@ -81,18 +103,13 @@
                         },
                         success: function (response) {
                             flag = true;
-                            var response = $.parseJSON(response);
-                            if (response.result == 'true') {
-                                $.cookie('token', response.token);
-                                window.location.href = 'index.html';
-                            }else {
-                                alert('你的用户名或密码有错!');
-                            }
+                            var y
                         }
                     });
                 }
             });
         })
+		*/
     </script>
 
 </body>
