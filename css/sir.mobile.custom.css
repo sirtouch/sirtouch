@@ -63,15 +63,15 @@ body {
 /****** Index Page ******/
 .margin-top-bottom-10px{ margin:15px 0;}
 .ui-listview li a{ height:20px; font-size:14px; line-height:20px; font-weight:100;}
-    .ui-listview li a span
-    {
-        float:left; display:inline-block; width:75%; overflow:hidden; color:#008bd6;
-    }
-    .ui-listview li a label
-    {
-        float:right; display:inline-block; width:20%; overflow:hidden;
-        font-size:12px; line-height:20px; text-align:right; color:#999; padding:0 .5em;
-    }
+.ui-listview li a span
+{
+    float:left; display:inline-block; width:75%; overflow:hidden; color:#008bd6;
+}
+.ui-listview li a label
+{
+    float:right; display:inline-block; width:20%; overflow:hidden;
+    font-size:12px; line-height:20px; text-align:right; color:#999; padding:0 .5em;
+}
 
 
 
@@ -87,19 +87,19 @@ body {
 {
     font-size:13px; font-weight:normal;
 }
-    .annex span
-    {
-        float:left; max-width:65%; overflow:hidden;
-    }
-    .annex label
-    {
-        float:right; max-width:65%; padding:0 .5em; overflow:hidden;
-        font-size:12px; font-weight:normal;
-    }
-        .annex label u
-        {
-            padding:0 5px; text-decoration:none;
-        }
+.annex span
+{
+    float:left; max-width:65%; overflow:hidden;
+}
+.annex label
+{
+    float:right; max-width:65%; padding:0 .5em; overflow:hidden;
+    font-size:12px; font-weight:normal;
+}
+.annex label u
+{
+    padding:0 5px; text-decoration:none;
+}
 .notice-detail
 {
     padding:1em;
@@ -120,10 +120,10 @@ body {
     clear:both; display:block; padding:.1em 1em;
     border-bottom:1px solid #ddd;
 }
-    .ui-input-search-box .ui-shadow-inset
-    {
-        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) inset;
-    }
+.ui-input-search-box .ui-shadow-inset
+{
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) inset;
+}
 .ui-contact-box .ui-listview
 {
     margin:0 -1.1em;
@@ -144,103 +144,103 @@ body {
 {
     clear:both; display:block; margin:0; padding:0; list-style:none; background:#f6f6f6;
 }
-    .ui-contact-list li
-    {
-        clear:both; padding:.5em 0; height:48px; overflow:hidden; position:relative;
-        border-bottom:1px solid #ddd;
-    }
-    .ui-contact-list li:hover{background:#E9E9E9;}
-        .ui-contact-list li .ui-checkbox
-        {
-            float:left; height:100%; border:0; margin:0; overflow:hidden;
-        }
-        .ui-contact-list li .ui-checkbox label
-        {
-            height:100%; border:0; margin:0; padding:0 1.5em; height:48px; background:none;
-        }
-        .ui-contact-list li .ui-checkbox label:hover{ background:none;}
-        .ui-contact-list li .ui-checkbox label:after{ margin-left:5px;}
-        .ui-contact-list li .ui-checkbox input{ display:none;}
+.ui-contact-list li
+{
+    clear:both; padding:.5em 0; height:48px; overflow:hidden; position:relative;
+    border-bottom:1px solid #ddd;
+}
+.ui-contact-list li:hover{background:#E9E9E9;}
+.ui-contact-list li .ui-checkbox
+{
+    float:left; height:100%; border:0; margin:0; overflow:hidden;
+}
+.ui-contact-list li .ui-checkbox label
+{
+    height:100%; border:0; margin:0; padding:0 1.5em; height:48px; background:none;
+}
+.ui-contact-list li .ui-checkbox label:hover{ background:none;}
+.ui-contact-list li .ui-checkbox label:after{ margin-left:5px;}
+.ui-contact-list li .ui-checkbox input{ display:none;}
 
-        .ui-contact-item-link
-        {
-            display:block; height:48px; margin-left:48px; padding-right:80px;
-            text-decoration:none; overflow:hidden;
-        }
-        .ui-contact-item-link img
-        {
-            float:left; margin-right:1em; height:48px;
-            border-radius:.5em;
-        }
-        .ui-contact-item-link h2{ margin:0; padding:.25em 0; font-size:1.1em; color:#333; text-shadow: 0 1px 0 #eee;}
-        .ui-contact-item-link p{ margin:0; padding:.15em 0; font-size:.8em; color:#333; text-shadow: 0 1px 0 #eee;}
-        .ui-contact-item-link p u{ color:#008bd6; text-decoration:none; font-weight:normal;}
-        .ui-contact-item-more
-        {
-            float:right; position:absolute; top:50%; right:0;
-            width:60px; height:34px; margin:-18px 10px 0 0;
-            border:1px solid #0073ba; background:#008bd6; text-shadow:none;
-            border-radius:.3125em; overflow:hidden;
-            text-align:center; line-height:34px; color:#fff; text-decoration:none;
-        }
-        .ui-contact-item-more:link{ color:#fff;}
-        .ui-contact-item-more:hover:link{ background:#0073ba; color:#fff;}
+.ui-contact-item-link
+{
+    display:block; height:48px; margin-left:48px; padding-right:80px;
+    text-decoration:none; overflow:hidden;
+}
+.ui-contact-item-link img
+{
+    float:left; margin-right:1em; height:48px;
+    border-radius:.5em;
+}
+.ui-contact-item-link h2{ margin:0; padding:.25em 0; font-size:1.1em; color:#333; text-shadow: 0 1px 0 #eee;}
+.ui-contact-item-link p{ margin:0; padding:.15em 0; font-size:.8em; color:#333; text-shadow: 0 1px 0 #eee;}
+.ui-contact-item-link p u{ color:#008bd6; text-decoration:none; font-weight:normal;}
+.ui-contact-item-more
+{
+    float:right; position:absolute; top:50%; right:0;
+    width:60px; height:34px; margin:-18px 10px 0 0;
+    border:1px solid #0073ba; background:#008bd6; text-shadow:none;
+    border-radius:.3125em; overflow:hidden;
+    text-align:center; line-height:34px; color:#fff; text-decoration:none;
+}
+.ui-contact-item-more:link{ color:#fff;}
+.ui-contact-item-more:hover:link{ background:#0073ba; color:#fff;}
 
 .ui-user-group
 {
     display:block; margin:1em 0 0 0; padding:1em; min-height:120px;
     border-top:1px solid #ddd; border-bottom:1px solid #ddd; background:#fff;
 }
-    .ui-user-group img 
-    {
-        float:left; display:inline-block; max-width:120px; margin-right:1em;
-        border-radius:1em; border:1px solid #ddd;
-    }
-    .ui-user-group h3{ padding:.5em 0; margin:0;}
-    .ui-user-group h4{ padding:.5em 0; margin:0; font-weight:500;}
+.ui-user-group img 
+{
+    float:left; display:inline-block; max-width:120px; margin-right:1em;
+    border-radius:1em; border:1px solid #ddd;
+}
+.ui-user-group h3{ padding:.5em 0; margin:0;}
+.ui-user-group h4{ padding:.5em 0; margin:0; font-weight:500;}
 
 .ui-user-infor{ clear:both; display:block; margin:0; padding:0; list-style:none;}
-    .ui-user-infor li
-    {
-        clear:both; display:block; position:relative; overflow:hidden;
-        background:#f6f6f6; border-bottom:1px solid #ddd;
-    }
-    .ui-user-infor li:hover{ background:#E9E9E9;}
-    .ui-user-infor li b { display:inline-block; padding:.7em .5em .7em 1em; line-height:1.6em;}
-    .ui-user-infor li .digital{ display:inline-block; line-height:1.6em; text-decoration:none;}
-    .ui-user-infor li span{ position:absolute; padding:.45em .5em 0 .5em; right:0;}
-    .ui-user-infor li span .ui-link
-    {
-        display:inline-block; width:28px; height:28px; padding:0; margin:0 .25em; overflow:hidden;
-        text-align:center; line-height:28px; font-weight:normal; text-indent:999px;
-        border-radius:.3125em;
-    }
-    .ui-user-infor li span .message
-    {
-        background:#008bd6 url(../images/icon-message.png) center center no-repeat; background-size:60%;
-    }
-    .ui-user-infor li span .message:hover
-    {
-        background:#0073ba url(../images/icon-message.png) center center no-repeat; background-size:60%;
-    }
-    
-    .ui-user-infor li span .tel
-    {
-        background:#008bd6 url(../images/icon-tel.png) center center no-repeat; background-size:60%;
-    }
-    .ui-user-infor li span .tel:hover
-    {
-        background:#0073ba url(../images/icon-tel.png) center center no-repeat; background-size:60%;
-    }
-    
-    .ui-user-infor li span .email
-    {
-        background:#008bd6 url(../images/icon-email.png) center center no-repeat; background-size:60%;
-    }
-    .ui-user-infor li span .email:hover
-    {
-        background:#0073ba url(../images/icon-email.png) center center no-repeat; background-size:60%;
-    }
+.ui-user-infor li
+{
+    clear:both; display:block; position:relative; overflow:hidden;
+    background:#f6f6f6; border-bottom:1px solid #ddd;
+}
+.ui-user-infor li:hover{ background:#E9E9E9;}
+.ui-user-infor li b { display:inline-block; padding:.7em .5em .7em 1em; line-height:1.6em;}
+.ui-user-infor li .digital{ display:inline-block; line-height:1.6em; text-decoration:none;}
+.ui-user-infor li span{ position:absolute; padding:.45em .5em 0 .5em; right:0;}
+.ui-user-infor li span .ui-link
+{
+    display:inline-block; width:28px; height:28px; padding:0; margin:0 .25em; overflow:hidden;
+    text-align:center; line-height:28px; font-weight:normal; text-indent:999px;
+    border-radius:.3125em;
+}
+.ui-user-infor li span .message
+{
+    background:#008bd6 url(../images/icon-message.png) center center no-repeat; background-size:60%;
+}
+.ui-user-infor li span .message:hover
+				    {
+					background:#0073ba url(../images/icon-message.png) center center no-repeat; background-size:60%;
+				    }
+
+.ui-user-infor li span .tel
+{
+    background:#008bd6 url(../images/icon-tel.png) center center no-repeat; background-size:60%;
+}
+.ui-user-infor li span .tel:hover
+				{
+				    background:#0073ba url(../images/icon-tel.png) center center no-repeat; background-size:60%;
+				}
+
+.ui-user-infor li span .email
+{
+    background:#008bd6 url(../images/icon-email.png) center center no-repeat; background-size:60%;
+}
+.ui-user-infor li span .email:hover
+				  {
+				      background:#0073ba url(../images/icon-email.png) center center no-repeat; background-size:60%;
+				  }
 
 /****** layout wrapper ******/
 .ui-popup-screen{ background:#000;}
@@ -268,59 +268,59 @@ body {
     display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
     flex-flow:row wrap;
 }
-    .ui-app-item
-    {
-        -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
-        -moz-box-flex: 1;         /* OLD - Firefox 19- */
-        -webkit-flex: 1;          /* Chrome */
-        -ms-flex: 1;              /* IE 10 */
-        flex: 1;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
-        padding:.5em 1em;
-        border-bottom:1px solid #ddd;
-        border-right:1px solid #ddd;
-    }
-        .ui-app-item a
-        {
-            display:block; padding:0; text-align:center; text-decoration:none;
-        }
-            .ui-app-item a i
-            {
-                display:block; height:1px; padding:2em 0; text-decoration:none;
-            }
-            .ui-app-item a b
-            {
-                display:block; text-decoration:none; font-size:1.1em; color:#333; line-height:1.8em;
-            }
-            .ui-app-item a.ui-app-email i
-            {
-                background:url(../images/icon-max-email.png) center center no-repeat; background-size:55%;
-            }
-            .ui-app-item a.ui-app-folder i
-            {
-                background:url(../images/icon-max-folder.png) center center no-repeat; background-size:55%;
-            }
-            .ui-app-item a.ui-app-clock i
-            {
-                background:url(../images/icon-max-clock.png) center center no-repeat; background-size:55%;
-            }
-            .ui-app-item a.ui-app-notice i
-            {
-                background:url(../images/icon-max-notice.png) center center no-repeat; background-size:55%;
-            }
-            .ui-app-item a.ui-app-other i
-            {
-                background:url(../images/icon-max-other.png) center center no-repeat; background-size:55%;
-            }
-            .ui-app-item a.ui-app-add i
-            {
-                background:url(../images/icon-max-add.png) center center no-repeat; background-size:55%;
-            }
+.ui-app-item
+{
+    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;         /* OLD - Firefox 19- */
+    -webkit-flex: 1;          /* Chrome */
+    -ms-flex: 1;              /* IE 10 */
+    flex: 1;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    padding:.5em 1em;
+    border-bottom:1px solid #ddd;
+    border-right:1px solid #ddd;
+}
+.ui-app-item a
+{
+    display:block; padding:0; text-align:center; text-decoration:none;
+}
+.ui-app-item a i
+{
+    display:block; height:1px; padding:2em 0; text-decoration:none;
+}
+.ui-app-item a b
+{
+    display:block; text-decoration:none; font-size:1.1em; color:#333; line-height:1.8em;
+}
+.ui-app-item a.ui-app-email i
+{
+    background:url(../images/icon-max-email.png) center center no-repeat; background-size:55%;
+}
+.ui-app-item a.ui-app-folder i
+{
+    background:url(../images/icon-max-folder.png) center center no-repeat; background-size:55%;
+}
+.ui-app-item a.ui-app-clock i
+{
+    background:url(../images/icon-max-clock.png) center center no-repeat; background-size:55%;
+}
+.ui-app-item a.ui-app-notice i
+{
+    background:url(../images/icon-max-notice.png) center center no-repeat; background-size:55%;
+}
+.ui-app-item a.ui-app-other i
+{
+    background:url(../images/icon-max-other.png) center center no-repeat; background-size:55%;
+}
+.ui-app-item a.ui-app-add i
+{
+    background:url(../images/icon-max-add.png) center center no-repeat; background-size:55%;
+}
 
 
-    .ui-app-content .ui-app-item:last-child
-    {
-        border-right:0;
-    }
+.ui-app-content .ui-app-item:last-child
+				 {
+				     border-right:0;
+				 }
 
 
 /* work page */
@@ -329,58 +329,51 @@ body {
     clear:both; display:block; height:20px; line-height:20px;
     margin:0; padding:1em 0;
 }
-    .ui-work-title span
-    {
-        float:left;
-    }
-    .ui-work-title u
-    {
-        float:right; text-decoration:none;
-    }
+.ui-work-title span
+{
+    float:left;
+}
+.ui-work-title u
+{
+    float:right; text-decoration:none;
+}
 
 .ui-work-sign
 {
     clear:both; display:block; min-height:32px; margin:1em -1em; padding:.5em 1em;
     border-top:1px solid #ddd; border-bottom:1px solid #ddd; background:#f3f3f3;
 }
-    .ui-work-sign h5
-    {
-        display:inline-block; float:left; width:35%; font-size:14px; line-height:32px;
-        margin:0; padding:0; overflow:hidden; color:#666;
-    }
-        .ui-work-sign h5 u
-        {
-            text-decoration:none;
-        }
-    .ui-work-sign .ui-btn
-    {
-        display:inline-block; width:auto; margin:0; padding:.4em 1.5em;
-        float:right;
-        font-size:14px; text-shadow:none; color:#fff; line-height:1.3em;
-    }
-    .ui-work-sign.up .ui-btn
-    {
-        background:#E10414; border-color:#C80311;
-    }
-        .ui-work-sign.up .ui-btn:hover
-        {
-            background:#C80311; text-shadow:none; color:#fff;
-        }
-    .ui-work-sign.off .ui-btn
-    {
-        background:#0db51d; border-color:#0b9818;
-    }
-        .ui-work-sign.off .ui-btn:hover
-        {
-            background:#0b9818; text-shadow:none; color:#fff;
-        }
-
-
-
-
-
-
-
+.ui-work-sign h5
+{
+    display:inline-block; float:left; width:35%; font-size:14px; line-height:32px;
+    margin:0; padding:0; overflow:hidden; color:#666;
+}
+.ui-work-sign h5 u
+{
+    text-decoration:none;
+}
+.ui-work-sign .ui-btn
+{
+    display:inline-block; width:auto; margin:0; padding:.4em 1.5em;
+    float:right;
+    font-size:14px; text-shadow:none; color:#fff; line-height:1.3em;
+}
+.ui-work-sign.up .ui-btn
+{
+    background:#E10414; border-color:#C80311;
+}
+.ui-work-sign.up .ui-btn:hover
+			     {
+				 background:#C80311; text-shadow:none; color:#fff;
+			     }
+.ui-work-sign.off .ui-btn
+{
+    background:#0db51d; border-color:#0b9818;
+}
+.ui-work-sign.off .ui-btn:hover
+			      {
+				  background:#0b9818; text-shadow:none; color:#fff;
+			      }
 
 
 
@@ -391,10 +384,10 @@ body {
 {
     display:block; text-align:center; padding:2% 0;
 }
-    .setting-logo img
-    {
-        max-width:60%;
-    }
+.setting-logo img
+{
+    max-width:60%;
+}
 .setting-item label
 {
     font-size:14px;
@@ -407,34 +400,34 @@ body {
 {
     margin:1em 0;
 }
-    .setting-content > .setting-listview li a b
-    {
-        font-weight:bold; color:#333;
-    }
-    .setting-content p button
-    {
-        font-size:14px;
-    }
-    .setting-content p button.ui-btn-blue
-    {
-        background:#3388cc; color:#fff; text-shadow:none;
-        border:1px solid #2a71af;
-    }
-        .setting-content p button.ui-btn-blue:hover
-        {
-            background:#2a71af; color:#fff; text-shadow:none;
-            border:1px solid #2a71af;
-        }
-    .setting-content p a.ui-btn-red
-    {
-        background:#e10414; color:#fff; text-shadow:none;
-        border:1px solid #c80311; font-size:14px;
-    }
-        .setting-content p a.ui-btn-red:hover
-        {
-            background:#c80311; color:#fff; text-shadow:none;
-            border:1px solid #c80311;
-        }
+.setting-content > .setting-listview li a b
+{
+    font-weight:bold; color:#333;
+}
+.setting-content p button
+{
+    font-size:14px;
+}
+.setting-content p button.ui-btn-blue
+{
+    background:#3388cc; color:#fff; text-shadow:none;
+    border:1px solid #2a71af;
+}
+.setting-content p button.ui-btn-blue:hover
+					  {
+					      background:#2a71af; color:#fff; text-shadow:none;
+					      border:1px solid #2a71af;
+					  }
+.setting-content p a.ui-btn-red
+{
+    background:#e10414; color:#fff; text-shadow:none;
+    border:1px solid #c80311; font-size:14px;
+}
+.setting-content p a.ui-btn-red:hover
+				    {
+					background:#c80311; color:#fff; text-shadow:none;
+					border:1px solid #c80311;
+				    }
 
 
 /* mail page*/
@@ -442,30 +435,30 @@ body {
 {
     margin:0 -1em;
 }
-    .ui-mail-inbox .ui-listview .ui-li-has-count span
-    {
-        width:auto;
-    }
+.ui-mail-inbox .ui-listview .ui-li-has-count span
+{
+    width:auto;
+}
 .ui-mail-listview
 {
     display:block;
 }
-    .ui-mail-listview li.ui-li-static
-    {
-        padding:0;
-    }
-        .ui-mail-listview li .ui-checkbox
-        {
-            margin:0;
-        }
-            .ui-mail-listview li .ui-checkbox label
-            {
-                border-radius:0; border:0; padding:4px 1em 4px 2.5em; min-height:40px; overflow:hidden;
-            }
-                .ui-mail-listview li .ui-checkbox label u
-                {
-                    display:block; line-height:20px; font-size:13px; font-weight:normal; text-decoration:none;
-                }
+.ui-mail-listview li.ui-li-static
+{
+    padding:0;
+}
+.ui-mail-listview li .ui-checkbox
+{
+    margin:0;
+}
+.ui-mail-listview li .ui-checkbox label
+{
+    border-radius:0; border:0; padding:4px 1em 4px 2.5em; min-height:40px; overflow:hidden;
+}
+.ui-mail-listview li .ui-checkbox label u
+{
+    display:block; line-height:20px; font-size:13px; font-weight:normal; text-decoration:none;
+}
 
 .ui-padding0px-content
 {
@@ -473,7 +466,7 @@ body {
 }
 .ui-editor-mail table tr td .ui-input-text
 {
-     border-style:none; border:0;
+    border-style:none; border:0;
 }
 .ui-editor-mail table tr td .ui-btn
 {
