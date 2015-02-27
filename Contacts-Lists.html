@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +26,9 @@
 
     <!-- Link JS -->
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/sir.mobile.custom.js"></script>
+    
+    
     <script>
         
         $(document).bind("mobileinit", function()  {  
@@ -63,7 +66,28 @@
             window.location.href = 'Login.html';    
         }
         var type = window.location.search;
-        var type = type.substr(type.length-1, 1);
+     var type = type.substr(type.length-1, 1);
+
+     var response = getContacts();
+     var userList = '';
+     
+     $.each(response, function(index, val) {
+         // alert(parseInt(index + 1));
+         userList += '<li>';
+         userList += '<div class="ui-checkbox">';
+         userList += '<label for="checkbox-'+parseInt(index + 1)+'a" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-off"></label>';
+         userList += '<input type="checkbox" name="checkbox-'+parseInt(index + 1)+'a" id="checkbox-'+parseInt(index + 1)+'a" data-cacheval="true">';
+         userList += '</div>';
+         userList += '<a class="ui-contact-item-link ui-link" href="#">';
+         userList += '<img alt="" src="'+ val.face +'" />';
+         userList += '<h2>'+ val.name +'</h2>';
+         userList += '<p>邮箱: <u>'+ val.email +'</u></p>';
+         userList += '</a>';
+         userList += '<a class="ui-contact-item-more ui-link" user-id="'+ val.id +'" href="###">详情</a>';
+         userList += '</li>';
+     });
+     
+     /*
         $.ajax({
             url: 'contact.php',
             data: {type: type},
@@ -101,6 +125,7 @@
                 
             }
         });
+     */
         
         
     </script>
