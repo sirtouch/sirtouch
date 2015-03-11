@@ -60,37 +60,6 @@
 <!-- Page -->
 <div data-role="page" class="ui-page ui-page-theme-a">
 
-    <script>
-        
-        $('.ui-footer').show();
-        if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
-            window.location.href = 'Login.html';    
-        }
-       
-        $('.ui-block-a').on('click', function(event) {
-            event.preventDefault();
-            $.mobile.changePage('index.html', {
-                reloadPage: false,
-                reverse: false
-            });
-        });
-        $('.ui-block-b').on('click', function(event) {
-            event.preventDefault();
-            $.mobile.changePage('Contacts.html', {
-                reloadPage: true,
-                reverse: false
-            });
-        });
-        $('.ui-block-d').on('click', function(event) {
-            event.preventDefault();
-            $.mobile.changePage('Setting.html', {
-                reloadPage: true,
-                reverse: false
-            });
-        });
-
-    </script>
-
 	<div data-role="header" class="ui-header ui-bar-inherit">
         <!--<a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>-->
 		<h1 class="ui-title" role="heading" aria-level="1">应用</h1>		
@@ -99,15 +68,9 @@
 	<div role="main" class="ui-content ui-applocation-content">
         <div class="ui-app-content">
             <div class="ui-app-item">
-                <a class="ui-app-notice" href="index.html">
+                <a class="ui-app-notice" href="Inform.html">
                     <i></i>
                     <b>通知</b>
-                </a>
-            </div>
-            <div class="ui-app-item">
-                <a class="ui-app-email" href="mail/Home.html">
-                    <i></i>
-                    <b>邮件</b>
                 </a>
             </div>
             <div class="ui-app-item">
@@ -121,7 +84,13 @@
                     <i></i>
                     <b>文档</b>
                 </a>
-            </div>           
+            </div>
+            <div class="ui-app-item">
+                <a class="ui-app-email" href="Setting.html">
+                    <i></i>
+                    <b>设置</b>
+                </a>
+            </div>            
         </div>
         <div class="ui-app-content">
             <div class="ui-app-item">
@@ -132,50 +101,66 @@
             </div>
             <div class="ui-app-item">&nbsp;</div> 
             <div class="ui-app-item">&nbsp;</div> 
-            <div class="ui-app-item">&nbsp;</div>           
+            <div class="ui-app-item">&nbsp;</div>          
         </div>
 	</div>
 
     <!-- footer -->
+    <script>
+
+     $(function () {
+
+     if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
+         window.location.href = 'Login.html';
+
+     }
+
+     $.each($('.ui-icon-carat-r'), function (index, element) {
+         $(element).on('click', function (event) {
+         event.preventDefault();
+         window.location.href = 'Notice-Detail.html?id=' + $(this).attr('data-id');
+         });
+     });
+     $('.ui-block-a').on('click', function(event) {
+         event.preventDefault();
+         $.mobile.changePage('index.html', {
+         reloadPage: true,
+         reverse: false
+         });
+     });
+     $('.ui-block-b').on('click', function(event) {
+         event.preventDefault();
+         $.mobile.changePage('Contacts.html', {
+         reloadPage: true,
+         reverse: false
+         });
+     });
+     $('.ui-block-c').on('click', function(event) {
+         event.preventDefault();
+         $.mobile.changePage('Work.html', {
+         reloadPage: true,
+         reverse: false
+         });
+     });
+
+     });
+
+    </script>
 	<div data-role="footer" class="ui-footer ui-footer-fixed ui-bar-inherit">
-		<div class="ui-navbar">
-			<ul class="ui-grid-c">
-				<li class="ui-block-a"><a data-icon="grid" class="ui-link ui-btn ui-icon-clock ui-btn-icon-top">通知</a></li>
-				<li class="ui-block-b"><a data-icon="star" class="ui-link ui-btn ui-icon-user ui-btn-icon-top">通讯录</a></li>
-				<li class="ui-block-c"><a data-icon="gear" class="ui-link ui-btn ui-icon-grid ui-btn-icon-top ui-btn-active">应用</a></li>
-                <li class="ui-block-d"><a data-icon="gear" class="ui-link ui-btn ui-icon-gear ui-btn-icon-top">设置</a></li>
-			</ul>
-		</div>
-	</div>
+                <div class="ui-navbar">
+                    <ul class="ui-grid-c">
+                    <li class="ui-block-a"><a data-transition="none" data-icon="grid" class="ui-link ui-btn ui-icon-mail ui-btn-icon-top">邮箱</a></li>
+                    <li class="ui-block-b"><a data-transition="none" data-icon="star" class="ui-link ui-btn ui-icon-user ui-btn-icon-top">通讯录</a></li>
+                    <li class="ui-block-c"><a data-transition="none" data-icon="gear" class="ui-link ui-btn ui-icon-calendar ui-btn-icon-top">考勤</a></li>
+                    <li class="ui-block-d"><a data-transition="none" data-icon="gear" class="ui-link ui-btn ui-icon-grid ui-btn-icon-top ui-btn-active">应用</a></li>
+                    </ul>
+                </div>
+            </div>
 
 </div>
 <div class="ui-loader ui-corner-all ui-body-a ui-loader-default"></div>
 
 </body>
     
-    <script>
-        $(function () {
-            $('.ui-block-a').on('click', function(event) {
-                event.preventDefault();
-                $.mobile.changePage('index.html', {
-                    reloadPage: false,
-                    reverse: false
-                });
-            });
-            $('.ui-block-b').on('click', function(event) {
-                event.preventDefault();
-                $.mobile.changePage('Contacts.html', {
-                    reloadPage: true,
-                    reverse: false
-                });
-            });
-            $('.ui-block-d').on('click', function(event) {
-                event.preventDefault();
-                $.mobile.changePage('Setting.html', {
-                    reloadPage: true,
-                    reverse: false
-                });
-            });
-        })
-    </script>
+    
 </html>

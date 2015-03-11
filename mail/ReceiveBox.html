@@ -45,7 +45,7 @@
         </style>
         <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
         <script src="../js/jquery.cookie.js"></script>
-
+        <script src="../js/sir.mobile.custom.js"></script>
 	</head>
 
 	<body>
@@ -57,40 +57,9 @@
                 if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
                     window.location.href = '../Login.html';    
                 }
-                var mailList = ''; 
-                $.ajax({
-                    url: '../mailList.php',
-                    type: 'GET',
-                    breforeSend: function() {
-                        
-                    },
-                    success: function (response) {
-                        if (response) {
-                            var response = $.parseJSON(response);
-                            $.each(response, function (index, val) {
-                                mailList += '<div class="ReceList">';
-                                mailList += '<a class="RLink ui-link" data-id="'+ val.id +'">';
-                                mailList += '<i class="RLi RLicon">&nbsp;</i>';
-                                mailList += '<div class="RLt">';
-                                mailList += '<span>'+ val.from +'/'+ val.name +'</span>';
-                                mailList += '<u>'+ val.subject +'</u>';
-                                mailList += '</div><i class="RRi"></i>';
-                                mailList += '</a></div>';
-                            });   
-                        }
-                        $('.ReceAll').append(mailList);
-                        
-                        $.each($('.RLink'), function (index, element) {
-                             $(element).on('click', function (event) {
-                                 event.preventDefault();
-                                 window.location.href = 'MailConts.html?id=' + $(this).attr('data-id');
-                             });
-                        });
-                        
-                    }
-                });
                 
             </script>
+
 
             <div data-role="header" class="ui-header ui-bar-inherit">
                 <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
@@ -101,7 +70,37 @@
 	        <div role="main" class="ui-content ui-index-content ui-padding0px-content">                
                 <div class="ReceAll"></div>
             </div>
+            <script type="text/javascript">
+            //getMailList
+                function getQueryString(name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) return unescape(r[2]); return null;
+                }
+                var Id = getQueryString('id');
+                var mailList = ''; 
+                var mail = new Mail();
+                var List = mail.getMailList(Id,10,1);
+                $.each(List,function (index,val){
+                    mailList += '<div class="ReceList">';
+                    mailList += '<a class="RLink ui-link" data-id="'+ val.id +'">';
+                    mailList += '<i class="RLi RLicon">&nbsp;</i>';
+                    mailList += '<div class="RLt">';
+                    mailList += '<span>'+ val.from +'/'+ val.attachment[0].name +'</span>';
+                    mailList += '<u>'+ val.subject +'</u>';
+                    mailList += '</div><i class="RRi"></i>';
+                    mailList += '</a></div>';
+                });
+                $('.ReceAll').append(mailList);
+                $.each($('.RLink'), function (index, element) {
+                    $(element).on('click', function (event) {
+                        event.preventDefault();
+                        window.location.href = 'MailConts.html?id=' + $(this).attr('data-id');
+                    });
+                });
+            </script>
 	    </div>
 
 	</body>
+
 </html>

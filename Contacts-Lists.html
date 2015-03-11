@@ -58,8 +58,25 @@
 
 <!-- Page -->
 <div data-role="page" class="ui-page ui-page-theme-a">
+    
 
-    <script>
+   
+
+	<div data-role="header" class="ui-header ui-bar-inherit">
+        <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
+		<h1 class="ui-title" role="heading" aria-level="1">通讯录</h1>		
+		<a href="#editor-contact-list" data-rel="popup" class="ui-btn-right ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Editor</a>
+	</div>
+    <div class="ui-input-search-box">
+        <input data-type="search" placeholder="Search">
+    </div>
+	<div role="main" class="ui-content ui-index-content ui-contact-list-group">
+    
+        <ul class="ui-contact-list">
+            
+        </ul>
+	</div>
+     <script>
     
         
         if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
@@ -67,26 +84,28 @@
         }
         var type = window.location.search;
      var type = type.substr(type.length-1, 1);
-
-     var response = getContacts();
+     var address = new Address();
+     var res = address.all();
+     var num= parseInt(type);
+     var response = res[0].subdepts[num].members;
      var userList = '';
      
      $.each(response, function(index, val) {
          // alert(parseInt(index + 1));
          userList += '<li>';
          userList += '<div class="ui-checkbox">';
-         userList += '<label for="checkbox-'+parseInt(index + 1)+'a" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-off"></label>';
-         userList += '<input type="checkbox" name="checkbox-'+parseInt(index + 1)+'a" id="checkbox-'+parseInt(index + 1)+'a" data-cacheval="true">';
+         userList += '<label for="checkbox-'+parseInt(index)+'a" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-off"></label>';
+         userList += '<input type="checkbox" name="checkbox-'+parseInt(index)+'a" id="checkbox-'+parseInt(index)+'a" data-cacheval="true">';
          userList += '</div>';
          userList += '<a class="ui-contact-item-link ui-link" href="#">';
-         userList += '<img alt="" src="'+ val.face +'" />';
+         userList += '<img alt="" src="" />';
          userList += '<h2>'+ val.name +'</h2>';
          userList += '<p>邮箱: <u>'+ val.email +'</u></p>';
          userList += '</a>';
-         userList += '<a class="ui-contact-item-more ui-link" user-id="'+ val.id +'" href="###">详情</a>';
+         userList += '<a class="ui-contact-item-more ui-link" user-id="'+ val.id +'" href="#">详情</a>';
          userList += '</li>';
      });
-     
+     $('.ui-contact-list').append(userList);
      /*
         $.ajax({
             url: 'contact.php',
@@ -130,32 +149,18 @@
         
     </script>
 
-	<div data-role="header" class="ui-header ui-bar-inherit">
-        <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
-		<h1 class="ui-title" role="heading" aria-level="1">通讯录</h1>		
-		<a href="#editor-contact-list" data-rel="popup" class="ui-btn-right ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Editor</a>
-	</div>
-    <div class="ui-input-search-box">
-        <input data-type="search" placeholder="Search">
-    </div>
-	<div role="main" class="ui-content ui-index-content ui-contact-list-group">
-    
-        <ul class="ui-contact-list">
-            
-        </ul>
-	</div>
-
     <!-- footer -->
 	<div data-role="footer" class="ui-footer ui-footer-fixed ui-bar-inherit">
-		<div class="ui-navbar">
-			<ul class="ui-grid-c">
-				<li class="ui-block-a"><a href="index.html" data-icon="grid" class="ui-link ui-btn ui-icon-clock ui-btn-icon-top">通知</a></li>
-				<li class="ui-block-b"><a href="Contacts.html" data-icon="star" class="ui-link ui-btn ui-icon-user ui-btn-icon-top ui-btn-active">通讯录</a></li>
-				<li class="ui-block-c"><a href="Application.html" data-icon="gear" class="ui-link ui-btn ui-icon-grid ui-btn-icon-top">应用</a></li>
-                <li class="ui-block-d"><a href="Setting.html" data-icon="gear" class="ui-link ui-btn ui-icon-gear ui-btn-icon-top">设置</a></li>
-			</ul>
-		</div>
-	</div>
+                <div class="ui-navbar">
+                    <ul class="ui-grid-c">
+                    <li class="ui-block-a"><a data-transition="none" data-icon="grid" class="ui-link ui-btn ui-icon-mail ui-btn-icon-top">邮箱</a></li>
+                    <li class="ui-block-b"><a data-transition="none" data-icon="star" class="ui-link ui-btn ui-icon-user ui-btn-icon-top ui-btn-active">通讯录</a></li>
+                    <li class="ui-block-c"><a data-transition="none" data-icon="gear" class="ui-link ui-btn ui-icon-calendar ui-btn-icon-top">考勤</a></li>
+                    <li class="ui-block-d"><a data-transition="none" data-icon="gear" class="ui-link ui-btn ui-icon-grid ui-btn-icon-top">应用</a></li>
+                    </ul>
+                </div>
+            </div>
+            
 
     <!-- editor -->
     <div id="editor-contact-list" class="ui-content public-layout" data-role="popup" data-theme="a">
@@ -165,6 +170,43 @@
             <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-minus">反选</a></li>
         </ul>
     </div>
+    <script>
+        
+        $('.ui-footer').show();
+        if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
+            window.location.href = 'Login.html';    
+        }
+       
+        $('.ui-block-a').on('click', function(event) {
+            event.preventDefault();
+            $.mobile.changePage('index.html', {
+            reloadPage: true,
+            reverse: false
+            });
+        });
+        $('.ui-block-b').on('click', function(event) {
+            event.preventDefault();
+            $.mobile.changePage('Contacts.html', {
+            reloadPage: true,
+            reverse: false
+            });
+        });
+        $('.ui-block-c').on('click', function(event) {
+            event.preventDefault();
+            $.mobile.changePage('Work.html', {
+            reloadPage: true,
+            reverse: false
+            });
+        });
+        $('.ui-block-d').on('click', function(event) {
+            event.preventDefault();
+            $.mobile.changePage('Application.html', {
+            reloadPage: true,
+            reverse: false
+            });
+        });
+
+    </script>
 
 </div>
 

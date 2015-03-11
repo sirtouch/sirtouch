@@ -25,7 +25,7 @@
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
 	<script type="text/javascript" src="js/sir.mobile.custom.js"></script>
     <script src="js/jquery.cookie.js"></script>
-    
+    <script type="text/javascript" src="js/sir.mobile.custom.js"></script>
 </head>
 
 <body>
@@ -63,12 +63,11 @@
         <p class="copyright">北京思能科贸有限公司 版权所有</p>
     </div>
 </div>
-    <script>
+<script>
 $('#login_btn').on('click',function(){
 	var username = $('#email').val();
 	var password = $('#password').val();
 	var flag = false;
-	
 	var response = login(username, password);
 	console.debug(response);
 	//alert(response);
@@ -110,7 +109,7 @@ $('#login_btn').on('click',function(){
             });
         })
 		*/
-    </script>
+</script>
 
 </body>
 </html>

@@ -44,6 +44,7 @@
                 }
                 
                 var id = getQueryString('id');
+                var mail = new Mail();
                 $.ajax({
                     url: '../userInfo.php',
                     type: 'POST',
@@ -106,10 +107,12 @@
                     <textarea class="EMCTinto" rows=""></textarea>
                 </div>
                 <p style="margin:0 1em;">
-                    <button class="ui-btn ui-corner-all">点击发送</button>
+                    <button class="ui-btn ui-corner-all ui-corner-last">点击发送</button>
                 </p>
             </div>
-
+            <script type="text/javascript">
+            $('.ui-corner-last').on('click',mail.send);
+            </script>
 	    </div>
 
 	</body>

@@ -25,6 +25,7 @@
         <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
         <script src="../js/jquery.cookie.js"></script>
+        <script src="../js/sir.mobile.custom.js"></script>
 	</head>
 
 	<body>
@@ -45,23 +46,7 @@
                     var r = window.location.search.substr(1).match(reg);
                     if (r != null) return unescape(r[2]); return null;
                 }
-                var mailID = getQueryString('id');
-                var mailDetail = '';
-                $.ajax({
-                    url: '../mailDetail.php',
-                    type: 'POST',
-                    data: {id: mailID},
-                    breforeSend: function () {
-                        
-                    },
-                    success: function (response) {
-                        var response = $.parseJSON(response);
-                        $('.MConts tr').eq(0).find('td').eq(1).html(response.from);
-                        $('.MConts tr').eq(1).find('td').eq(1).html(response.to);
-                        $('.MConts tr').eq(2).find('td').eq(1).html(response.subject);
-                        $('.MConts tr').eq(3).find('td').eq(1).html(response.attachment.name + '<a href="'+ response.attachment.url +'">下载</a>');
-                    }                 
-                })
+                
                     
             </script>
 
@@ -106,6 +91,17 @@
 
 	</body>
     <script>
+        //getMailData
+        var mailID = getQueryString('id');
+        var mailDetail = '';
+        var mail = new Mail();
+        var maildetail = mail.getMailData(mailID);
+        $('.MConts tr').eq(0).find('td').eq(1).html(maildetail.from);
+        $('.MConts tr').eq(1).find('td').eq(1).html(maildetail.to);
+        $('.MConts tr').eq(2).find('td').eq(1).html(maildetail.subject);
+        $('.MConts tr').eq(3).find('td').eq(1).html(maildetail.attachment[0].name + '<a href="'+ maildetail.attachment.url +'">下载</a>');
+                    
+                    
         $(function () {
             $('.ui-quick-replay-btn').click(function () {
                 $('.ui-quick-replay').slideDown('slow');

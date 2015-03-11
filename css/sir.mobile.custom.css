@@ -315,6 +315,10 @@ body {
 {
     background:url(../images/icon-max-add.png) center center no-repeat; background-size:55%;
 }
+.ui-app-item a.ui-app-setting i
+{
+    background:url(../images/icon-max-setting.png) center center no-repeat; background-size:55%;
+}
 
 
 .ui-app-content .ui-app-item:last-child
