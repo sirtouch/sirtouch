@@ -16,6 +16,34 @@ function login(username, password)
     var json_str = "{\"result\":\"true\", \"token\": \"342bh32hgjhfdsjhk\"}";
 
     return(json_str);
+    /*var result = "";
+    $.ajax({ url: "http://192.168.1.81/mobile/login/", 
+        data:{username:username, password:password},
+        dataType:"text",
+        type:"GET",
+        async:false,
+        success: function(data){
+            result = data;
+        }});
+    return result;*/
+}
+function logout()
+{
+
+    var json_str = "{\"result\":\"true\", \"token\": \"342bh32hgjhfdsjhk\"}";
+
+    return(json_str);
+    /*var result = "";
+    console.log("##"+ getTokenId())
+    $.ajax({ url: "http://192.168.1.81/mobile/login/", 
+        data:{'sessionid':getTokenId()},
+        dataType:"json",
+        type:"GET",
+        async:false,
+        success: function(data){
+            result = data;
+        }});
+    return result;*/
 }
 
 
@@ -84,7 +112,19 @@ Notice.prototype.sync = function()
  {
     var json_str = "[{\"id\":\"100\", \"title\":\"\u6d4b\u8bd51\", \"time\":\"2015-01-27 11:20:20\", \"attachmentName\":\"1.jpg\"},{\"id\":\"101\", \"title\":\"\u6d4b\u8bd52\", \"time\":\"2015-01-27 11:20:20\", \"attachmentName\":\"2.jpg\"}]";
     return(json_str);
- }
+ 
+    //  获取所有的notice的列表
+    /*var result = "[]";
+    $.ajax({ url: "http://192.168.1.81/mobile/notice_sync/", 
+        data:{'token':getTokenId()},
+        dataType:"json",
+        type:"GET",
+        async:false,
+        success: function(data){
+            result = data;
+        }});
+    return result;*/
+}
  
  Notice.prototype.get = function(id)
  {
@@ -97,8 +137,32 @@ Notice.prototype.sync = function()
     {
         return null;
     }
+    
+    /*var result = "{}";
+    // 从noticeGetContent中根据id查询指定notice
+    console.log("!!!!!!"+ id)
+    $.ajax({ 
+        url: "http://192.168.1.81/mobile/noticeGetContent/", 
+        data:{'token':getTokenId(),
+            'noticeId':id
+        },
+        dataType:"json",
+        type:"GET",
+        async:false,
+        success: function(data){
+            result = data;
+        }});
+    return result;*/
  }
- 
+
+ Notice.prototype.attachment = function(id)
+ {
+    // 根据Notice的id获取内部附件的下载链接
+    var token = getTokenId();
+    var url = "http://192.168.1.81/mobile/noticeGetAttachment/?token="+token+"&noticeId=" + id;
+    return url;
+ }
+
  //--------------- FILE ---------------
  
  function File(){}
@@ -227,3 +291,19 @@ Attendance.prototype.getInfo = function()
  {
     return true;
  }
+
+
+// 获取当前的sessionid
+function getTokenId(){
+   var c_name = 'token';
+   if(document.cookie.length>0){
+      c_start=document.cookie.indexOf(c_name + "=")
+      if(c_start!=-1){ 
+        c_start=c_start + c_name.length+1 
+        c_end=document.cookie.indexOf(";",c_start)
+        if(c_end==-1) c_end=document.cookie.length
+        return unescape(document.cookie.substring(c_start,c_end));
+      }
+   }
+  }
+ 

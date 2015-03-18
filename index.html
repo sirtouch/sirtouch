@@ -79,6 +79,7 @@
             <script type="text/javascript">
             var mail = new Mail();
             var folders = mail.getFolderList();
+            folders = $.parseJSON(folders);
             var foldersList = "";
             $.each(folders,function(index,val){
             	foldersList += '<li class="ui-li-has-count ui-last-child"><a id="'+val.id+'" class="ui-btn ui-btn-icon-right ui-icon-carat-r">'+val.name+'</a></li>';

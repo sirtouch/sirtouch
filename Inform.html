@@ -81,6 +81,7 @@
 	     $('.ui-listview').empty();
 	     var notice = new Notice();
 	     var response = notice.all();
+	     response = $.parseJSON(response)
 	     $.each(response,function(index,val){
 			noticeList += '<li><a href=Notice-Detail.html?id='+val.id+' class="ui-btn ui-btn-icon-right ui-icon-carat-r" data-id='+val.id+'><span>'+val.title+'</span><label style="padding:0 6px;">'+val.time+'</label></a></li>';
 			});
