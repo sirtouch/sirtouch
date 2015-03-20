@@ -11,7 +11,7 @@
 		<meta name="description" content="" />
 		<meta name="author" content="James.bell" />
 
-		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 		
 		<link rel="shortcut icon" href="images/favicon.ico" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -24,6 +24,7 @@
         <!--Link Javascript-->
         <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="../js/sir.mobile.custom.js"></script>
         <script src="../js/jquery.cookie.js"></script>
 
 	</head>
@@ -43,22 +44,25 @@
                     if (r != null) return unescape(r[2]); return null;
                 }
                 
-                var id = getQueryString('id');
+                var email = getQueryString('email');
+                var recieve = email.split(',')[0];
+                var copy = email.split(',')[1];
+                var secret = email.split(',')[2];
                 var mail = new Mail();
-                $.ajax({
-                    url: '../userInfo.php',
-                    type: 'POST',
-                    data: {userId: id},
-                    beforeSend: function () {
+                // $.ajax({
+                //     url: '../userInfo.php',
+                //     type: 'POST',
+                //     data: {userId: email},
+                //     beforeSend: function () {
                         
-                    },
-                    success: function (response) {
-                        if (response) {
-                            var userInfo = $.parseJSON(response);
-                            $('.EMCInfor tr').eq(0).find('td').eq(1).find('input').val(userInfo.name);   
-                        }
-                    }
-                });
+                //     },
+                //     success: function (response) {
+                //         if (response) {
+                //             var userInfo = $.parseJSON(response);
+                //             $('.EMCInfor tr').eq(0).find('td').eq(1).find('input').val(userInfo.name);   
+                //         }
+                //     }
+                // });
                 
                 $('.EMCInfor tr').eq(0).find('td').eq(2).find('a').on('click', function(event) {
                     event.preventDefault();
@@ -76,18 +80,19 @@
             </div>            
 
 	        <div role="main" class="ui-content ui-index-content ui-editor-mail ui-padding0px-content">
+                <form>
                 <table class="EMCInfor" cellpadding="0" cellspacing="0">
-                    <tr>
+                    <tr class="reciever">
                         <td>收件人：</td>
                         <td><input type="text" value="" /></td>
                         <td><a href="#" class="ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all">No text</a></td>
                     </tr>
-                    <tr>
+                    <tr class="copy">
                         <td>抄送：</td>
                         <td><input type="text" value="" /></td>
                         <td><a href="#" class="ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all">No text</a></td>
                     </tr>
-                    <tr>
+                    <tr class="secret">
                         <td>暗送：</td>
                         <td><input type="text" value="" /></td>
                         <td><a href="#" class="ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all">No text</a></td>
@@ -98,11 +103,12 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td><a class="AddOut" href="#"><font>添加附件</font></a></td>
-                        <td><input type="text" value="单个文件大小不超过5M" /></td>
+                        <td><a class="AddOut upload" href="#"><font>添加附件</font></a></td>
+                        <td><input class="file-name" type="text" value="单个文件大小不超过5M" /><input class="upload-file" type="file" style="display:none"></td>
                         <td></td>
                     </tr>
                 </table>
+                </form>
                 <div class="EMCText">
                     <textarea class="EMCTinto" rows=""></textarea>
                 </div>
@@ -111,7 +117,17 @@
                 </p>
             </div>
             <script type="text/javascript">
-            $('.ui-corner-last').on('click',mail.send);
+            $('.upload').on('click',function(){
+                $('.upload-file').change(function(){
+                    $('.file-name').val($('.upload-file').val());
+                });
+                $('.upload-file').trigger('click');
+
+            })
+            $('.ui-corner-last').on('click',function(){});
+            $('.reciever input').val(recieve);
+            $('.copy input').val(copy);
+            $('.secret input').val(secret);
             </script>
 	    </div>
 

@@ -278,7 +278,7 @@ html,body,table, div, a
     {
         float:left; text-decoration:none; overflow:hidden; font-size:14px;
         padding:.3em .5em; text-shadow:0;
-        background:url(../images/but-bg02.png) top left repeat-x;
+        background:url(../images/but-bg01.png) top left repeat-x;
         background-position:0 0;
         -webkit-border-radius: .2em;
         border-radius: .2em; 

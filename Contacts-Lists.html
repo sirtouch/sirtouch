@@ -10,7 +10,7 @@
 	-->
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width; initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
 	<title>Contacts</title>
 	<meta name="description" content="" />
@@ -85,7 +85,7 @@
         var type = window.location.search;
      var type = type.substr(type.length-1, 1);
      var address = new Address();
-     var res = address.all();
+     var res = JSON.parse(address.all());
      var num= parseInt(type);
      var response = res[0].subdepts[num].members;
      var userList = '';
@@ -100,12 +100,20 @@
          userList += '<a class="ui-contact-item-link ui-link" href="#">';
          userList += '<img alt="" src="" />';
          userList += '<h2>'+ val.name +'</h2>';
-         userList += '<p>邮箱: <u>'+ val.email +'</u></p>';
+         userList += '<p>邮箱: <u class="editemail">'+ val.email +'</u></p>';
          userList += '</a>';
-         userList += '<a class="ui-contact-item-more ui-link" user-id="'+ val.id +'" href="#">详情</a>';
+         userList += '<a class="ui-contact-item-more ui-link user-detail" user-id="'+ val.id +'" href="#">详情</a>';
          userList += '</li>';
      });
      $('.ui-contact-list').append(userList);
+     $('.editemail').on('click',function(){
+        window.location.href = 'mail/EditerMail.html?email=' + $(this).html() + ',,';
+     });
+     $.each($('.user-detail'),function(index,element){
+        $(this).on('click',function(){
+            window.location.href = 'Contacts-Detail.html?id='+$(this).attr('user-id');
+        })
+     })
      /*
         $.ajax({
             url: 'contact.php',

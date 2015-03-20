@@ -66,7 +66,7 @@
             
             <div data-role="header" class="ui-header ui-bar-inherit">
 	            <h1 class="ui-title" role="heading" aria-level="1">邮件</h1>
-                <a href="mail/EditerMail.html" class="ui-btn-right ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all" data-role="button" role="button">User</a>
+                <a href="mail/EditerMail.html" class="ui-btn-right ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all editmail" data-role="button" role="button">User</a>
             </div>            
             <div class="ui-input-search-box">
                 <input data-type="search" placeholder="Search">
@@ -90,6 +90,10 @@
 		 		window.location.href = 'mail/ReceiveBox.html?id=' + $(this).attr('id'); 
 	     		})
 	 		});
+	 		$('.editmail').on('click', function (event) {
+                        event.preventDefault();
+                        window.location.href = 'mail/EditerMail.html?id=' + $(this).attr('data-id');
+            });
            	</script>
             <!-- footer -->
     

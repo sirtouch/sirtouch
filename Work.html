@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -64,9 +63,9 @@
 		}
 		 
 		var now = new Date();
-		var year = now.getFullYear(),
-			month = now.getMonth() + 1,
-			day = now.getDate();
+		var year = now.getFullYear();
+		var	month = now.getMonth() + 1;
+		var	day = now.getDate();
 		var weekDay = [
 			'星期日',
 			'星期一',
@@ -92,37 +91,57 @@
         </h2>
         <div class="ui-work-sign up">
             <h5>上班：<u>09:00</u></h5>
-            <h5>签到：<u>08:55:00</u></h5>
-            <button class="ui-btn ui-corner-all">签到</button>
+            <h5 class="checkin-time">签到：<u></u></h5>
+            <button class="ui-btn ui-corner-all checkin">签到</button>
         </div>
         <div class="ui-work-sign off">
             <h5>下班：<u>18:00</u></h5>
-            <h5>签到：<u>18:05:00</u></h5>
-            <button class="ui-btn ui-corner-all">签退</button>
+            <h5 class="checkout-time">签到：<u></u></h5>
+            <button class="ui-btn ui-corner-all checkout">签退</button>
         </div>
 	</div>
-	<script type="text/javascript">
+<script type="text/javascript">
+	var attendance = new Attendance();
+	var attendanceInfo = JSON.parse(attendance.getInfo());
+	var loc = "";
 	function getGps(){
 		var gps = navigator.geolocation;
 		if(gps){
-			gps.getCurrentPosition(showgps,function(error){
+			gps.getCurrentPosition(pushgps,function(error){
 				alert("Got an error, code: " + error.code + " message: "+ error.message);
-			},{maximumAge: 30000})
+			});
 		}else{
 			alert("无法定位");
 		}
 	}
-	function showgps(position){
-		if(position){console.log(position);}else{
+	function pushgps(position){
+		if(position){
+			loc = position;
+		}else{
 			alert("position is null");
 		}
 	}
-	var attendance = new Attendance();
-	var location;
-	$('.ui-corner-all').on("click",function(){
-		attendance.checkin(location);
-	});
-	</script>
+	
+	if(attendanceInfo.checkin == ""){
+		$('.checkin').on('click',function(){
+			getGps();
+			attendance.checkin(loc);
+			$('.checkout').css({'background-color':'grey','border-color':'grey'});
+		})
+	}else{
+		$('.checkin').css({'background-color':'grey','border-color':'grey'});
+	}
+	if(attendanceInfo.checkout == ""){
+		$('.checkout').on('click',function(){
+			getGps();
+			attendance.checkout(loc);
+			$('.checkout').css({'background-color':'grey','border-color':'grey'});
+		})
+	}else{
+		$('.checkout').css({'background-color':'grey','border-color':'grey'});
+	}
+
+</script>
     <!-- footer -->
     <div data-role="footer" class="ui-footer ui-footer-fixed ui-bar-inherit">
 				<div class="ui-navbar">
