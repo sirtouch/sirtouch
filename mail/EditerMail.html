@@ -32,7 +32,62 @@
 	<body>
 
         <div data-role="page" class="ui-page ui-page-theme-a">
-            
+            <div data-role="header" class="ui-header ui-bar-inherit">
+                <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
+	            <h1 class="ui-title" role="heading" aria-level="1">写邮件</h1>
+                <!--<a href="EditerMail.html" class="ui-btn-right ui-btn ui-icon-carat-r ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Next</a>-->
+            </div>            
+
+	        <div role="main" class="ui-content ui-index-content ui-editor-mail ui-padding0px-content">
+                <form>
+                <table class="EMCInfor" cellpadding="0" cellspacing="0">
+                    <tr class="reciever">
+                        <td>收件人：</td>
+                        <td><input type="text" value="" /></td>
+                        <td><a href="#" class="ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all">No text</a></td>
+                    </tr>
+                    <tr class="copy">
+                        <td>抄送：</td>
+                        <td><input type="text" value="" /></td>
+                        <td><a href="#" class="ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all">No text</a></td>
+                    </tr>
+                    <tr class="secret">
+                        <td>暗送：</td>
+                        <td><input type="text" value="" /></td>
+                        <td><a href="#" class="ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all">No text</a></td>
+                    </tr>
+                    <tr>
+                        <td>主题：</td>
+                        <td><input type="text" value="" /></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a class="AddOut upload" href="#"><font>添加附件</font></a></td>
+                        <td><input class="file-name" type="text" value="单个文件大小不超过5M" /><input class="upload-file" type="file" style="display:none"></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div class="EMCText">
+                    <textarea class="EMCTinto" rows=""></textarea>
+                </div>
+                <p style="margin:0 1em;">
+                    <input type="submit" class="ui-btn ui-corner-all ui-corner-last" value="点击发送">
+                </p>
+                </form>
+            </div>
+            <script type="text/javascript">
+            $('.upload').on('click',function(){
+                $('.upload-file').change(function(){
+                    $('.file-name').val($('.upload-file').val());
+                });
+                $('.upload-file').trigger('click');
+
+            })
+            $('.ui-corner-last').on('click',function(){});
+            $('.reciever input').val(recieve);
+            $('.copy input').val(copy);
+            $('.secret input').val(secret);
+            </script>
             <script>
                 
                 if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
@@ -70,64 +125,6 @@
                 });
                 
                 
-            </script>
-
-
-            <div data-role="header" class="ui-header ui-bar-inherit">
-                <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
-	            <h1 class="ui-title" role="heading" aria-level="1">写邮件</h1>
-                <!--<a href="EditerMail.html" class="ui-btn-right ui-btn ui-icon-carat-r ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Next</a>-->
-            </div>            
-
-	        <div role="main" class="ui-content ui-index-content ui-editor-mail ui-padding0px-content">
-                <form>
-                <table class="EMCInfor" cellpadding="0" cellspacing="0">
-                    <tr class="reciever">
-                        <td>收件人：</td>
-                        <td><input type="text" value="" /></td>
-                        <td><a href="#" class="ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all">No text</a></td>
-                    </tr>
-                    <tr class="copy">
-                        <td>抄送：</td>
-                        <td><input type="text" value="" /></td>
-                        <td><a href="#" class="ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all">No text</a></td>
-                    </tr>
-                    <tr class="secret">
-                        <td>暗送：</td>
-                        <td><input type="text" value="" /></td>
-                        <td><a href="#" class="ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all">No text</a></td>
-                    </tr>
-                    <tr>
-                        <td>主题：</td>
-                        <td><input type="text" value="" /></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td><a class="AddOut upload" href="#"><font>添加附件</font></a></td>
-                        <td><input class="file-name" type="text" value="单个文件大小不超过5M" /><input class="upload-file" type="file" style="display:none"></td>
-                        <td></td>
-                    </tr>
-                </table>
-                </form>
-                <div class="EMCText">
-                    <textarea class="EMCTinto" rows=""></textarea>
-                </div>
-                <p style="margin:0 1em;">
-                    <button class="ui-btn ui-corner-all ui-corner-last">点击发送</button>
-                </p>
-            </div>
-            <script type="text/javascript">
-            $('.upload').on('click',function(){
-                $('.upload-file').change(function(){
-                    $('.file-name').val($('.upload-file').val());
-                });
-                $('.upload-file').trigger('click');
-
-            })
-            $('.ui-corner-last').on('click',function(){});
-            $('.reciever input').val(recieve);
-            $('.copy input').val(copy);
-            $('.secret input').val(secret);
             </script>
 	    </div>
 

@@ -108,7 +108,18 @@
         <ul class="ui-user-infor">
         </ul>
 	</div>
-     <script>
+    <!-- footer -->
+	<div data-role="footer" class="ui-footer ui-footer-fixed ui-bar-inherit">
+                <div class="ui-navbar">
+                    <ul class="ui-grid-c">
+                    <li class="ui-block-a"><a data-transition="none" data-icon="grid" class="ui-link ui-btn ui-icon-mail ui-btn-icon-top ui-btn-active">邮箱</a></li>
+                    <li class="ui-block-b"><a data-transition="none" data-icon="star" class="ui-link ui-btn ui-icon-user ui-btn-icon-top">通讯录</a></li>
+                    <li class="ui-block-c"><a data-transition="none" data-icon="gear" class="ui-link ui-btn ui-icon-calendar ui-btn-icon-top">考勤</a></li>
+                    <li class="ui-block-d"><a data-transition="none" data-icon="gear" class="ui-link ui-btn ui-icon-grid ui-btn-icon-top">应用</a></li>
+                    </ul>
+                </div>
+            </div>
+<script>
     
         $('.ui-footer').hide();
         if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
@@ -124,45 +135,56 @@
         var Info = JSON.parse(address.get(userId));
         var userInfo = "", // 用户信息
             userContact = ""; // 用户联系方式
-            alert(1);
         userInfo += '<img alt="" src="'+ Info.face +'" />' ;
         userInfo += '<h3>'+Info.name +'</h3>';
         userInfo += '<h4>'+Info.title +'</h4>';
         $('.ui-user-group').append(userInfo);
-        alert(2);
                 
-                // 联系信息
-        userContact += '<li><b>移动电话: </b><a class="digital" href="#">'+Info.mobile +'</a>';
-        userContact += '<span><a class="message ui-link" href="#">message</a><a class="tel ui-link" href="#">tel</a></span>';
-        userContact += '</li>';
-        userContact += '<li><b>固定电话: </b><a class="digital" href="#">'+Info.phone +'</a>';
-        userContact += '<span><a class="tel ui-link" href="#">tel</a></span>';
-        userContact += '</li>';
-        userContact += '<li><b>电子邮件: </b><a class="digital" href="#">'+Info.email +'</a>';
-        userContact += '<span><a class="email ui-link" href="#" data-id="'+Info.id +'">email</a></span>';
-        userContact += '</li>';
-        $('.ui-user-infor').append(userContact);
-                
-        $('.email').on('click', function (event) {
-            event.preventDefault();
-            window.location.href = 'mail/EditerMail.html?id=' + $(this).attr('data-id');
+        // 联系信息
+        
+        $.each(Info.mobile,function(index,element){
+            userContact += '<li>';
+            userContact += '<b>移动电话: </b><a class="digital" href="#">'+element+'</a>';
+            userContact += '<span><a class="message ui-link" href="#">message</a><a class="tel ui-link" href="#">tel</a></span>';
+            userContact += '</li>';
         });
         
         
-    </script>
-
-    <!-- footer -->
-	<div data-role="footer" class="ui-footer ui-footer-fixed ui-bar-inherit">
-                <div class="ui-navbar">
-                    <ul class="ui-grid-c">
-                    <li class="ui-block-a"><a data-transition="none" data-icon="grid" class="ui-link ui-btn ui-icon-mail ui-btn-icon-top ui-btn-active">邮箱</a></li>
-                    <li class="ui-block-b"><a data-transition="none" data-icon="star" class="ui-link ui-btn ui-icon-user ui-btn-icon-top">通讯录</a></li>
-                    <li class="ui-block-c"><a data-transition="none" data-icon="gear" class="ui-link ui-btn ui-icon-calendar ui-btn-icon-top">考勤</a></li>
-                    <li class="ui-block-d"><a data-transition="none" data-icon="gear" class="ui-link ui-btn ui-icon-grid ui-btn-icon-top">应用</a></li>
-                    </ul>
-                </div>
-            </div>
-            
+        $.each(Info.phone,function(index,element){
+            userContact += '<li>';
+            userContact += '<b>固定电话: </b><a class="digital" href="#">'+element+'</a>';
+            userContact += '<span><a class="tel ui-link" href="#">tel</a></span>';
+            userContact += '</li>';
+        })
+        
+        
+        $.each(Info.email,function(index,element){
+            userContact += '<li>';
+            userContact += '<b>电子邮件: </b><a class="digital" href="#">'+element+'</a>';
+            userContact += '<span><a class="email ui-link" href="#" data-id="'+Info.id +'">email</a></span>';
+            userContact += '</li>';
+        });
+        
+        $('.ui-user-infor').append(userContact);
+        $('.tel').on('click',function (event){
+            event.preventDefault();
+            var number = $(this).parents('li').find('.digital').html();
+            $(this).parents('li').find('.digital').attr('href','tel:'+number);
+            $(this).parents('li').find('.digital').trigger('click');
+        }); 
+        $('.message').on('click',function (event){
+            event.preventDefault();
+            var number = $(this).parents('li').find('.digital').html();
+            $(this).parents('li').find('.digital').attr('href','sms:'+number);
+            $(this).parents('li').find('.digital').trigger('click');
+        });      
+        $('.email').on('click', function (event) {
+            event.preventDefault();
+            window.location.href = 'mail/EditerMail.html?email=' + $(this).parents('li').find('.digital').html() + ',,';
+        });
+        
+        
+</script>   
 
 </div>
 
