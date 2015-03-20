@@ -10,7 +10,7 @@
 	-->
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width; initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
 	<title>Index</title>
 	<meta name="description" content="" />
@@ -102,6 +102,21 @@
         </div>
 	</div>
 	<script type="text/javascript">
+	function getGps(){
+		var gps = navigator.geolocation;
+		if(gps){
+			gps.getCurrentPosition(showgps,function(error){
+				alert("Got an error, code: " + error.code + " message: "+ error.message);
+			},{maximumAge: 30000})
+		}else{
+			alert("无法定位");
+		}
+	}
+	function showgps(position){
+		if(position){console.log(position);}else{
+			alert("position is null");
+		}
+	}
 	var attendance = new Attendance();
 	var location;
 	$('.ui-corner-all').on("click",function(){
