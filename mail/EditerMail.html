@@ -68,26 +68,16 @@
                     </tr>
                 </table>
                 <div class="EMCText">
-                    <textarea class="EMCTinto" rows=""></textarea>
+                    <textarea class="EMCTinto" rows="" style="resize:none;outline:none;"></textarea>
+                </div>
+                <div style="display:none;">
+                    <input class="cotent" type="text">
                 </div>
                 <p style="margin:0 1em;">
-                    <input type="submit" class="ui-btn ui-corner-all ui-corner-last" value="点击发送">
+                    <input type="submit" action="index.php" class="ui-btn ui-corner-all ui-corner-last submit" value="点击发送">
                 </p>
                 </form>
             </div>
-            <script type="text/javascript">
-            $('.upload').on('click',function(){
-                $('.upload-file').change(function(){
-                    $('.file-name').val($('.upload-file').val());
-                });
-                $('.upload-file').trigger('click');
-
-            })
-            $('.ui-corner-last').on('click',function(){});
-            $('.reciever input').val(recieve);
-            $('.copy input').val(copy);
-            $('.secret input').val(secret);
-            </script>
             <script>
                 
                 if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
@@ -100,10 +90,25 @@
                 }
                 
                 var email = getQueryString('email');
-                var recieve = email.split(',')[0];
-                var copy = email.split(',')[1];
-                var secret = email.split(',')[2];
+                var recieve="";
+                var copy="";
+                var secret="";
                 var mail = new Mail();
+                if(email){
+                    var recieve = email.split(',')[0];
+                    var copy = email.split(',')[1];
+                    var secret = email.split(',')[2];
+                }
+                $('.upload').on('click',function(){
+                    $('.upload-file').change(function(){
+                        $('.file-name').val($('.upload-file').val());
+                    });
+                    $('.upload-file').trigger('click');
+                });
+                $('.ui-corner-last').on('click',function(){});
+                $('.reciever input').val(recieve);
+                $('.copy input').val(copy);
+                $('.secret input').val(secret);
                 // $.ajax({
                 //     url: '../userInfo.php',
                 //     type: 'POST',
@@ -123,7 +128,9 @@
                     event.preventDefault();
                     window.location.href = '../Contacts.html';
                 });
-                
+                $('.submit').on('click',function(){
+                    alert(1);
+                })
                 
             </script>
 	    </div>
