@@ -38,9 +38,6 @@
                     window.location.href = '../Login.html';    
                 }
                 
-                $('.ui-quick-replay-btn').click(function () {
-                    $('.ui-quick-replay').slideDown('slow');
-                });
                 function getQueryString(name) {
                     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
                     var r = window.location.search.substr(1).match(reg);
@@ -53,7 +50,7 @@
             <div data-role="header" class="ui-header ui-bar-inherit">
                 <a data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
 	            <h1 class="ui-title" role="heading" aria-level="1">Admin@admin.com</h1>
-                <a href="#" class="ui-btn-right ui-btn ui-icon-carat-r ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Next</a>
+                <a href="#" class="nextMail ui-btn-right ui-btn ui-icon-carat-r ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Next</a>
             </div>            
 
 	        <div role="main" class="ui-content ui-index-content ui-padding0px-content">
@@ -78,12 +75,21 @@
                 <div class="EMCText MCinfouter">
                     <div class="MCinfor"></div>
                 </div>
+                <form>
                 <div class="ui-quick-replay">
-                    <textarea cols="" rows="">输入回复内容！</textarea>
+                    <textarea cols="" rows="" placeholder="输入回复内容！"></textarea>
+                </div>
+                <div style="display:none">
+                    <input class="reply-from" type="text"
+                    name="from">
+                    <input class="reply-reciever" type="text" name="reciever">
+                    <input class="reply-topic" type="text" name="topic" value="快速回复">
+                    <input class="reply-content" type="text" name="content">
                 </div>
                 <p style="margin:0 1em;">
-                    <button class="ui-btn ui-corner-all ui-quick-replay-btn">快速回复</button>
+                    <input class="ui-btn ui-corner-all ui-quick-replay-btn submit" type="submit" action="" value="快速回复">
                 </p>
+                </form>
             </div>
 
 	    </div>
@@ -95,23 +101,46 @@
         var mailID = getQueryString('id');
         var mailDetail = '';
         var mail = new Mail();
-        var maildetail = mail.getMailData(mailID);
+        var maildetail = JSON.parse(mail.getMailData(mailID));
         $('.MConts tr').eq(0).find('td').eq(1).html(maildetail.from);
         $('.MConts tr').eq(1).find('td').eq(1).html(maildetail.to);
         $('.MConts tr').eq(2).find('td').eq(1).html(maildetail.subject);
-        $('.MConts tr').eq(3).find('td').eq(1).html(maildetail.attachment[0].name + '<a href="'+ maildetail.attachment.url +'">下载</a>');
+        $('.MConts tr').eq(3).find('td').eq(1).html(maildetail.attachment[0].name + '<a href="'+ maildetail.attachment[0].url +'">下载</a>');
+        $('.MCinfor').html(maildetail.content);
+        var ok = false;
                     
                     
         $(function () {
-            $('.ui-quick-replay-btn').click(function () {
-                $('.ui-quick-replay').slideDown('slow');
-            });
             
             $('#goback').on('click', function(event) {
                 event.preventDefault();
                 /* Act on the event */
                 window.location.href = 'ReceiveBox.html';
             });
-        })
+        });
+        //快速回复
+        $('.submit').on('click',function(event){
+            if(!ok){
+                $('.ui-quick-replay').slideDown('slow');
+                ok = true;
+                event.preventDefault();
+            }else{
+                $('.reply-reciever').val(maildetail.from);
+                $('.reply-from').val(maildetail.to);
+                var content = $('textarea').val().replace(/\s/g,"");
+                $('.reply-content').val(content);
+                ok = true;
+                if(content == ""){
+                    alert("请输入内容");
+                    event.preventDefault();
+                    ok = true;
+                }else{
+                    window.location.href="../index.html";
+                }
+            }
+        });
+        $('.nextMail').on('click',function(){
+            var nextid = mail.nextMailId;
+        });
     </script>
 </html>

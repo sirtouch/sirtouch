@@ -81,13 +81,13 @@
             var folders = JSON.parse(mail.getFolderList());
             var foldersList = "";
             $.each(folders,function(index,val){
-            	foldersList += '<li class="ui-li-has-count ui-last-child"><a id="'+val.id+'" class="ui-btn ui-btn-icon-right ui-icon-carat-r">'+val.name+'</a></li>';
+            	foldersList += '<li class="ui-li-has-count ui-last-child"><a id="'+val.id+'" name="'+val.name+'" class="ui-btn ui-btn-icon-right ui-icon-carat-r">'+val.name+'</a></li>';
             });
             $('.ui-listview').append(foldersList);
             $.each($('.ui-icon-carat-r'), function (index, element) {
 	     		$(element).click(function () {
 		 		event.preventDefault();
-		 		window.location.href = 'mail/ReceiveBox.html?id=' + $(this).attr('id'); 
+		 		window.location.href = 'mail/ReceiveBox.html?id=' + $(this).attr('id') + '&' + encodeURI($(this).attr('name')); 
 	     		})
 	 		});
 	 		$('.editmail').on('click', function (event) {

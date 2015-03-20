@@ -129,7 +129,9 @@
 			$('.checkout').css({'background-color':'grey','border-color':'grey'});
 		})
 	}else{
+		$('.checkin').unbind('click');
 		$('.checkin').css({'background-color':'grey','border-color':'grey'});
+		$('.checkin-time u').html(attendanceInfo.checkin.split(" ")[1]);
 	}
 	if(attendanceInfo.checkout == ""){
 		$('.checkout').on('click',function(){
@@ -138,7 +140,9 @@
 			$('.checkout').css({'background-color':'grey','border-color':'grey'});
 		})
 	}else{
+		$('.checkout').unbind('click');
 		$('.checkout').css({'background-color':'grey','border-color':'grey'});
+		$('.checkout-time u').html(attendanceInfo.checkout.split(" ")[1]);
 	}
 
 </script>

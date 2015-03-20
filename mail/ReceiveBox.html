@@ -120,7 +120,10 @@
                     var r = window.location.search.substr(1).match(reg);
                     if (r != null) return unescape(r[2]); return null;
                 }
-                var Id = getQueryString('id');
+                var Info = getQueryString('id');
+                var Id = Info.split('+')[0];
+                var folderName = Info.split('+')[1];
+                $('.ui-title').html(folderName);
                 var mailList = ''; 
                 var mail = new Mail();
                 var List = JSON.parse(mail.getMailList(Id,10,1));
@@ -138,7 +141,7 @@
                 $.each($('.RLink'), function (index, element) {
                     $(element).on('click', function (event) {
                         event.preventDefault();
-                        window.location.href = 'MailConts.html'
+                        window.location.href = 'MailConts.html?id='+$(this).attr('data-id');
                     });
                 });
             </script>

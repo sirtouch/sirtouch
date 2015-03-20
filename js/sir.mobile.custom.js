@@ -144,8 +144,8 @@ Attendance.prototype.checkout = function(areaLocation)
 Attendance.prototype.getInfo = function()
 {
     //没数据返回空记录。例如：{"cleckin":"","cleckout":""}
-    //var json_str = "{\"checkin\": \"2015-03-14 08:00:00\", \"checkout\": \"2015-03-14 18:00:00\"}";
-    var json_str = "{}";
+    var json_str = "{\"checkin\": \"2015-03-14 08:00:00\", \"checkout\": \"2015-03-14 18:00:00\"}";
+    //var json_str = "{}";
     return(json_str);
 }
 
@@ -166,7 +166,7 @@ Attendance.prototype.getInfo = function()
  {
     var json_str = "{\"from\": \"lishujun@qq.com\", \"content\": \"sdfskajdfskdjfsdfj\", \"to\": \"58135482@qq.com\", \"attachment\": [{\"url\": \"http:\/\/www.csdn.net\/1.jpg\", \"name\": \"1.jpg\"}], \"time\": \"2014-01-12 12:00:00\", \"id\": \"100\", \"subject\": \"test\"}";
     
-    if(id == 100)
+    if(id == "100")
         return(json_str);
     
     return null;
