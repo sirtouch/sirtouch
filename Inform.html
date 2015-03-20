@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+	<meta charset="utf-8" />
+
+	<!--
+	      Always force latest IE rendering engine (even in intranet) & Chrome Frame Remove this if you use the .htaccess
+	      -->
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	
+	<title>Index</title>
+	<meta name="description" content="" />
+	<meta name="author" content="James.bell" />
+
+	<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+	<link rel="shortcut icon" href="images/favicon.ico" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+	<!-- Link CSS -->
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/sir.mobile.custom.css" />
+	<link rel="stylesheet" href="css/mobile-style.css">
+
+	<!-- Link JS -->
+	<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="js/sir.mobile.custom.js"></script>
+	<script>
+	 $(document).bind("mobileinit", function()  {  
+	     $.mobile.defaultPageTransition = 'none';  
+	     $.mobile.defaultDialogTransition = 'none';  
+	 });
+	 
+	</script>
+	
+	<style>
+	 .ui-page { 
+	     backface-visibility: hidden;  
+	     -webkit-backface-visibility: hidden; /* Chrome and Safari */  
+	     -moz-backface-visibility: hidden; /* Firefox */  
+	 }
+	 .ui-body-c, .ui-overlay-c {
+	     border: 1px solid #AAA;
+	     color: #333;
+	     background: #F9F9F9; 
+	 }
+	</style>
+	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript" src="js/sir.mobile.custom.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	
+    </head>
+
+    <body>
+
+	<!-- Page -->
+	<div data-role="page" class="ui-page ui-page-theme-a">
+
+	    <script>
+	     if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
+		 window.location.href = 'Login.html';
+	     }
+	    </script>
+
+	    <div data-role="header" class="ui-header ui-bar-inherit">
+	    <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
+		<h1 class="ui-title" role="heading" aria-level="1">通知</h1>
+	    </div>
+
+	    <div role="main" class="ui-content ui-index-content margin-top-bottom-10px">
+		<ul data-role="listview" class="ui-listview">
+		    
+		</ul>
+	    </div>
+	    <script type="text/javascript">
+	    	var noticeList = '';
+
+	     $('.ui-listview').empty();
+	     var notice = new Notice();
+	     var response = JSON.parse(notice.all());
+	     $.each(response,function(index,val){
+			noticeList += '<li class="Rlink" link="Notice-Detail.html?id='+val.id+'"><a class="ui-btn ui-btn-icon-right ui-icon-carat-r Inform-btn" data-id='+val.id+'><span>'+val.title+'</span><label style="padding:0 6px;">'+val.time+'</label></a></li>';
+			});
+	     $('.ui-listview').append(noticeList);
+	     $.each($('.Rlink'), function (index, element) {
+                    $(element).on('click', function (event) {
+                        event.preventDefault();
+                        window.location.href = $(this).attr('link');
+                    });
+         });
+	    </script>
+
+	    <!-- footer -->
+	    <div data-role="footer" class="ui-footer ui-footer-fixed ui-bar-inherit">
+				<div class="ui-navbar">
+				    <ul class="ui-grid-c">
+					<li class="ui-block-a"><a data-transition="none" data-icon="grid" class="ui-link ui-btn ui-icon-mail ui-btn-icon-top">邮箱</a></li>
+					<li class="ui-block-b"><a data-transition="none" data-icon="star" class="ui-link ui-btn ui-icon-bars ui-btn-icon-top">文档</a></li>
+					<li class="ui-block-c"><a data-transition="none" data-icon="gear" class="ui-link ui-btn ui-icon-calendar ui-btn-icon-top">考勤</a></li>
+					<li class="ui-block-d"><a data-transition="none" data-icon="gear" class="ui-link ui-btn ui-icon-grid ui-btn-icon-top">应用</a></li>
+				    </ul>
+				</div>
+		</div>
+	</div>
+
+    </body>
+    <script>
+
+     $(function () {
+
+	 $.each($('.ui-icon-carat-r'), function (index, element) {
+	     $(element).on('click', function (event) {
+		 event.preventDefault();
+		 window.location.href = 'Notice-Detail.html?id=' + $(this).attr('data-id');
+	     });
+	 });
+	 $('.ui-block-b').on('click', function(event) {
+	            event.preventDefault();
+	            $.mobile.changePage('Folder.html', {
+	            reloadPage: true,
+	            reverse: false
+	            });
+	        });
+	 $('.ui-block-c').on('click', function(event) {
+	     event.preventDefault();
+	     $.mobile.changePage('Application.html', {
+		 reloadPage: true,
+		 reverse: false
+	     });
+	 });
+	 $('.ui-block-d').on('click', function(event) {
+	     event.preventDefault();
+	     $.mobile.changePage('Setting.html', {
+		 reloadPage: false,
+		 reverse: false
+	     });
+	 });
+
+     });
+
+    </script>
+
+</html>
+
+

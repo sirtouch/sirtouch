@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>Cmail Mobile Online System 1.0</title>
+
+		<meta name="description" content="" />
+		<meta name="author" content="James.bell" />
+
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		
+		<link rel="shortcut icon" href="../images/favicon.ico" />
+		<link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+        <!--Link Style-->
+        <link type="text/css" rel="Stylesheet" href="../css/jquery.mobile-1.4.5.min.css" />
+        <link type="text/css" rel="Stylesheet" href="../css/sir.mobile.custom.css" />
+        <link type="text/css" rel="Stylesheet" href="../css/mobile-style.css" />
+
+        <!--Link Javascript-->
+        <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+        <script>
+            $(document).bind("mobileinit", function()  {  
+                $.mobile.defaultPageTransition = 'none';  
+                $.mobile.defaultDialogTransition = 'none';  
+            });
+            
+        </script>
+        
+        <style>
+            .ui-page { 
+                backface-visibility: hidden;  
+                -webkit-backface-visibility: hidden; /* Chrome and Safari */  
+                -moz-backface-visibility: hidden; /* Firefox */  
+            }
+            .ui-body-c, .ui-overlay-c {
+                border: 1px solid #AAA;
+                color: #333;
+                background: #F9F9F9; 
+            }
+        </style>
+        <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+        <script src="../js/jquery.cookie.js"></script>
+        <script src="../js/sir.mobile.custom.js"></script>
+	</head>
+
+	<body>
+
+        <div data-role="page" class="ui-page ui-page-theme-a">
+        
+            <script>
+            
+                if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
+                    window.location.href = 'Login.html';    
+                }
+                
+            </script>
+
+
+            <div data-role="header" class="ui-header ui-bar-inherit">
+                <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
+	            <h1 class="ui-title" role="heading" aria-level="1">收件箱</h1>
+                <a href="EditerMail.html" class="ui-btn-right ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Add</a>
+            </div>            
+
+	        <div role="main" class="ui-content ui-index-content ui-padding0px-content">                
+                <div class="ReceAll"></div>
+            </div>
+            </script>
+            <!-- footer -->
+    
+            <div data-role="footer" class="ui-footer ui-footer-fixed ui-bar-inherit">
+                <div class="ui-navbar">
+                    <ul class="ui-grid-c">
+                    <li class="ui-block-a"><a data-transition="none" data-icon="grid" class="ui-link ui-btn ui-icon-mail ui-btn-icon-top">邮箱</a></li>
+                    <li class="ui-block-b"><a data-transition="none" data-icon="star" class="ui-link ui-btn ui-icon-bars ui-btn-icon-top">文档</a></li>
+                    <li class="ui-block-c"><a data-transition="none" data-icon="gear" class="ui-link ui-btn ui-icon-calendar ui-btn-icon-top">考勤</a></li>
+                    <li class="ui-block-d"><a data-transition="none" data-icon="gear" class="ui-link ui-btn ui-icon-grid ui-btn-icon-top">应用</a></li>
+                    </ul>
+                </div>
+            </div>
+<script>
+            $('.ui-block-a').on('click', function(event) {
+                event.preventDefault();
+                $.mobile.changePage('../index.html', {
+                    reloadPage: true,
+                    reverse: false
+                });
+            });
+            $('.ui-block-b').on('click', function(event) {
+                event.preventDefault();
+                $.mobile.changePage('../Folder.html', {
+                    reloadPage: true,
+                    reverse: false
+                });
+            });
+            $('.ui-block-c').on('click', function(event) {
+                event.preventDefault();
+                $.mobile.changePage('../Work.html', {
+                    reloadPage: true,
+                    reverse: false
+                });
+            });
+            $('.ui-block-d').on('click', function(event) {
+                event.preventDefault();
+                $.mobile.changePage('../Application.html', {
+                    reloadPage: true,
+                    reverse: false
+                });
+            });
+</script>
+            <script type="text/javascript">
+            //getMailList
+                function getQueryString(name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) return unescape(r[2]); return null;
+                }
+                var Id = getQueryString('id');
+                var mailList = ''; 
+                var mail = new Mail();
+                var List = JSON.parse(mail.getMailList(Id,10,1));
+                $.each(List,function (index,val){
+                    mailList += '<div class="ReceList">';
+                    mailList += '<a class="RLink ui-link" data-id="'+ val.id +'">';
+                    mailList += '<i class="RLi RLicon">&nbsp;</i>';
+                    mailList += '<div class="RLt">';
+                    mailList += '<span>'+ val.from +'/'+ val.attachment[0].name +'</span>';
+                    mailList += '<u>'+ val.subject +'</u>';
+                    mailList += '</div><i class="RRi"></i>';
+                    mailList += '</a></div>';
+                });
+                $('.ReceAll').append(mailList);
+                $.each($('.RLink'), function (index, element) {
+                    $(element).on('click', function (event) {
+                        event.preventDefault();
+                        window.location.href = 'MailConts.html?id=' + $(this).attr('data-id');
+                    });
+                });
+            </script>
+	    </div>
+
+	</body>
+
+</html>

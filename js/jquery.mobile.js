@@ -1,0 +1,1 @@
+link /usr/share/javascript/jquery-mobile/jquery.mobile.js
