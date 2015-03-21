@@ -123,6 +123,16 @@
 	 if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
 	     window.location.href = 'Login.html';	
 	 }
+	 	function getQueryString(name) {
+        	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+        var getInfo = getQueryString('to');
+        var To = getInfo.split(",")[0];
+        var recieve = getInfo.split(",")[1];
+        var copy = getInfo.split(",")[2];
+        var secret = getInfo.split(",")[3];
 
 	 //Address all
 	 var address = new Address();
@@ -141,7 +151,7 @@
 	 $.each($('.ui-icon-carat-r'), function (index, element) {
 	     $(element).click(function () {
 		 event.preventDefault();
-		 window.location.href = 'Contacts-Lists.html?type=' + $(this).attr('data-type'); 
+		 window.location.href = 'Contacts-Lists.html?type=' + $(this).attr('data-type') + ',' + To + ',' + recieve + ',' + copy + ',' + secret 
 	     })
 	 });
 	 

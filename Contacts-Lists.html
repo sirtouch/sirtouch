@@ -76,44 +76,67 @@
             
         </ul>
 	</div>
-     <script>
+    <script>
     
         
         if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
             window.location.href = 'Login.html';    
         }
-        var type = window.location.search;
-     var type = type.substr(type.length-1, 1);
-     var address = new Address();
-     var res = JSON.parse(address.all());
-     var num= parseInt(type);
-     var response = res[0].subdepts[num].members;
-     var userList = '';
-     
-     $.each(response, function(index, val) {
-         // alert(parseInt(index + 1));
-         userList += '<li>';
-         userList += '<div class="ui-checkbox">';
-         userList += '<label for="checkbox-'+parseInt(index)+'a" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-off"></label>';
-         userList += '<input type="checkbox" name="checkbox-'+parseInt(index)+'a" id="checkbox-'+parseInt(index)+'a" data-cacheval="true">';
-         userList += '</div>';
-         userList += '<a class="ui-contact-item-link ui-link" href="#">';
-         userList += '<img alt="" src="" />';
-         userList += '<h2>'+ val.name +'</h2>';
-         userList += '<p>邮箱: <u class="editemail">'+ val.email +'</u></p>';
-         userList += '</a>';
-         userList += '<a class="ui-contact-item-more ui-link user-detail" user-id="'+ val.id +'" href="#">详情</a>';
-         userList += '</li>';
-     });
-     $('.ui-contact-list').append(userList);
-     $('.editemail').on('click',function(){
-        window.location.href = 'mail/EditerMail.html?email=' + $(this).html() + ',,';
-     });
-     $.each($('.user-detail'),function(index,element){
-        $(this).on('click',function(){
-            window.location.href = 'Contacts-Detail.html?id='+$(this).attr('user-id');
-        })
-     })
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+        var getInfo = getQueryString('type');
+        var type = getInfo.split(",")[0];
+        var To = "reciever";
+        var recieve = "";
+        var copy = "";
+        var secret = "";
+        if(getInfo.split(",")[1]){
+            To = getInfo.split(",")[1];
+            recieve = getInfo.split(",")[2];
+            copy = getInfo.split(",")[3];
+            secret = getInfo.split(",")[4];
+        }        
+         var address = new Address();
+         var res = JSON.parse(address.all());
+         var num= parseInt(type);
+         var response = res[0].subdepts[num].members;
+         var userList = '';
+         
+         $.each(response, function(index, val) {
+             // alert(parseInt(index + 1));
+             userList += '<li>';
+             userList += '<div class="ui-checkbox">';
+             userList += '<label for="checkbox-'+parseInt(index)+'a" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-off"></label>';
+             userList += '<input type="checkbox" class="checkbox" name="checkbox-'+parseInt(index)+'a" id="checkbox-'+parseInt(index)+'a" data-cacheval="true">';
+             userList += '</div>';
+             userList += '<a class="ui-contact-item-link ui-link" href="#">';
+             userList += '<img alt="" src="" />';
+             userList += '<h2>'+ val.name +'</h2>';
+             userList += '<p>邮箱: <u class="editemail">'+ val.email +'</u></p>';
+             userList += '</a>';
+             userList += '<a class="ui-contact-item-more ui-link user-detail" user-id="'+ val.id +'" href="#">详情</a>';
+             userList += '</li>';
+         });
+         $('.ui-contact-list').append(userList);
+         $('.editemail').on('click',function(){
+            window.location.href = 'mail/EditerMail.html?email=' + $(this).html() + ',,';
+         });
+         $.each($('.user-detail'),function(index,element){
+            $(this).on('click',function(){
+                window.location.href = 'Contacts-Detail.html?id='+$(this).attr('user-id');
+            })
+         });
+         $('.ui-btn-icon-left').on('click',function(){
+            alert(1);
+            if($(this).siblings('input').attr('checked')=='checked'){
+                $(this).siblings('input').attr('checked','undefined');
+            }else{
+                $(this).siblings('input').attr('checked','checked');
+            }
+         })
      /*
         $.ajax({
             url: 'contact.php',
@@ -173,12 +196,77 @@
     <!-- editor -->
     <div id="editor-contact-list" class="ui-content public-layout" data-role="popup" data-theme="a">
         <ul data-role="listview" class="ui-listview ui-listview-inset ui-corner-all">
-            <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-refresh">确定</a></li>
-			<li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-check">全选</a></li>
-            <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-minus">反选</a></li>
+            <li><a href="#" class="confirm ui-btn ui-btn-icon-right ui-icon-refresh">确定</a></li>
+			<li><a href="#" class="selAll ui-btn ui-btn-icon-right ui-icon-check">全选</a></li>
+            <li><a href="#" class="selOps ui-btn ui-btn-icon-right ui-icon-minus">反选</a></li>
         </ul>
     </div>
     <script>
+        var emailTo = "";
+        $('.confirm').on('click',function(){
+            $('.confirm').unbind('click');
+            var all = $('.checkbox');
+            $.each(all,function(index,element){
+                if($(this).siblings('label').attr('class')=="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-on"){
+                    $(this).attr("checked","checked");
+                }
+                if(emailTo==""){
+                    if(index == 0){
+                        emailTo += $(this).parents('li').find('.editemail').html();
+                    }else{
+                        emailTo += ("/"+$(this).parents('li').find('.editemail').html());
+                    }
+                }
+            });
+            if(To == "reciever"){
+                    if(recieve == ""){
+                        recieve += emailTo;
+                    }else{
+                        recieve += ("/"+emailTo);
+                    }
+                }else if(To == "copy"){
+                    if(copy == ""){
+                        copy += emailTo;
+                    }else{
+                        copy += ("/"+emailTo);
+                    }
+                }else if(To == "secret"){
+                    if(secret == ""){
+                        secret += emailTo;
+                    }else{
+                        secret += ("/"+emailTo);
+                    }
+                }
+            EmailTo = "mail/EditerMail.html?email="+recieve+','+copy+','+secret;
+            window.location.href = EmailTo;
+        })
+        $('.selAll').on('click',function(){
+            $.each($('.checkbox'),function(index,element){
+                $(this).siblings('label').trigger('click');
+                if($(this).attr("checked")=="checked"){
+                    
+                }else{
+                    $(this).attr("checked","checked");
+                    $('.in').trigger('click');
+                }
+                
+                
+            });
+        })
+        $('.selOps').on('click',function(){
+            var all = $('.checkbox');
+            $.each(all,function(index,element){
+                if($(this).attr("checked") == "checked"){
+                    $(this).siblings('label').trigger('click');
+                    $(this).attr("checked","undefined");
+                    $('.in').trigger('click');
+                }else{
+                    $(this).siblings('label').trigger('click');
+                    $(this).attr("checked","checked");
+                    $('.in').trigger('click');
+                }
+            });
+        })
         
         $('.ui-footer').show();
         if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {

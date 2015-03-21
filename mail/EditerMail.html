@@ -126,7 +126,15 @@
                 
                 $('.EMCInfor tr').eq(0).find('td').eq(2).find('a').on('click', function(event) {
                     event.preventDefault();
-                    window.location.href = '../Contacts.html';
+                    window.location.href = '../Contacts.html?to=reciever,'+recieve+','+copy+','+secret;
+                });
+                $('.EMCInfor tr').eq(1).find('td').eq(2).find('a').on('click', function(event) {
+                    event.preventDefault();
+                    window.location.href = '../Contacts.html?to=copy,'+recieve+','+copy+','+secret;
+                });
+                $('.EMCInfor tr').eq(2).find('td').eq(2).find('a').on('click', function(event) {
+                    event.preventDefault();
+                    window.location.href = '../Contacts.html?to=secret,'+recieve+','+copy+','+secret;
                 });
                 $('.submit').on('click',function(event){
                     var topic = $('.topic').val().replace(/\s/g,"");
