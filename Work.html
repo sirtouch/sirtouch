@@ -125,8 +125,11 @@
 	if(attendanceInfo.checkin == ""){
 		$('.checkin').on('click',function(){
 			getGps();
-			attendance.checkin(loc);
-			$('.checkout').css({'background-color':'grey','border-color':'grey'});
+			var response = JSON.parse(attendance.checkin(loc));
+			alert(response.message);
+			if(response.result){
+				window.location.href = window.location.href;
+			}
 		})
 	}else{
 		$('.checkin').unbind('click');
@@ -136,8 +139,11 @@
 	if(attendanceInfo.checkout == ""){
 		$('.checkout').on('click',function(){
 			getGps();
-			attendance.checkout(loc);
-			$('.checkout').css({'background-color':'grey','border-color':'grey'});
+			var response = JSON.parse(attendance.checkout(loc));
+			alert(response.message);
+			if(response.result){
+				window.location.href = window.location.href;
+			}
 		})
 	}else{
 		$('.checkout').unbind('click');
