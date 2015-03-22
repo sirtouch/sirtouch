@@ -89,18 +89,25 @@
 		
 		$('.ui-block-b').on('click', function(event) {
 			event.preventDefault();
-			$.mobile.changePage('Contacts.html', {
+			$.mobile.changePage('Folder.html?path=', {
 				reloadPage: true,
 				reverse: false
 			});
 		});
 		$('.ui-block-c').on('click', function(event) {
-			event.preventDefault();
-			$.mobile.changePage('Application.html', {
-				reloadPage: true,
-				reverse: false
-			});
-		});
+                event.preventDefault();
+                $.mobile.changePage('Work.html', {
+                    reloadPage: true,
+                    reverse: false
+                });
+        });
+        $('.ui-block-d').on('click', function(event) {
+                event.preventDefault();
+                $.mobile.changePage('Application.html', {
+                    reloadPage: true,
+                    reverse: false
+                });
+        });
 		
 	</script>
 
@@ -168,48 +175,6 @@
 </div>
 
 </body>
-	<script>
-		$(function () {
-			if ($.cookie('token') == 'null') {
-				window.location.href = 'Login.html';	
-			}
-			$('#logout_btn').on('click', function (event) {
-				event.preventDefault();
-				$.cookie('token', null);
-				window.location.href = 'Login.html';
-			});
-			
-			$('.ui-block-a').on('click', function(event) {
-	            event.preventDefault();
-	            $.mobile.changePage('index.html', {
-	            reloadPage: true,
-	            reverse: false
-	            });
-	        });
-	        $('.ui-block-b').on('click', function(event) {
-	            event.preventDefault();
-	            $.mobile.changePage('Folder.html', {
-	            reloadPage: true,
-	            reverse: false
-	            });
-	        });
-	        $('.ui-block-c').on('click', function(event) {
-	            event.preventDefault();
-	            $.mobile.changePage('Work.html', {
-	            reloadPage: true,
-	            reverse: false
-	            });
-	        });
-	        $('.ui-block-d').on('click', function(event) {
-	            event.preventDefault();
-	            $.mobile.changePage('Application.html', {
-	            reloadPage: true,
-	            reverse: false
-	            });
-	        });
-		});
-		
-	</script>
 </html>
 
 

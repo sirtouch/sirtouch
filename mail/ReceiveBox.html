@@ -55,7 +55,7 @@
             <script>
             
                 if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
-                    window.location.href = 'Login.html';    
+                    window.location.href = '../Login.html';    
                 }
                 
             </script>
@@ -93,7 +93,7 @@
             });
             $('.ui-block-b').on('click', function(event) {
                 event.preventDefault();
-                $.mobile.changePage('../Folder.html', {
+                $.mobile.changePage('../Folder.html?path=', {
                     reloadPage: true,
                     reverse: false
                 });

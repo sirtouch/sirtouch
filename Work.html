@@ -122,7 +122,7 @@
 		}
 	}
 	
-	if(attendanceInfo.checkin == ""){
+	if(!attendanceInfo.checkin){
 		$('.checkin').on('click',function(){
 			getGps();
 			var response = JSON.parse(attendance.checkin(loc));
@@ -136,7 +136,7 @@
 		$('.checkin').css({'background-color':'grey','border-color':'grey'});
 		$('.checkin-time u').html(attendanceInfo.checkin.split(" ")[1]);
 	}
-	if(attendanceInfo.checkout == ""){
+	if(!attendanceInfo.checkout){
 		$('.checkout').on('click',function(){
 			getGps();
 			var response = JSON.parse(attendance.checkout(loc));
@@ -173,7 +173,7 @@
             });
             $('.ui-block-b').on('click', function(event) {
                 event.preventDefault();
-                $.mobile.changePage('Folder.html', {
+                $.mobile.changePage('Folder.html?path=', {
                     reloadPage: true,
                     reverse: false
                 });

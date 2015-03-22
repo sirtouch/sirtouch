@@ -118,25 +118,25 @@
 	 });
 	 $('.ui-block-b').on('click', function(event) {
 	            event.preventDefault();
-	            $.mobile.changePage('Folder.html', {
+	            $.mobile.changePage('Folder.html?path=', {
 	            reloadPage: true,
 	            reverse: false
 	            });
 	        });
 	 $('.ui-block-c').on('click', function(event) {
-	     event.preventDefault();
-	     $.mobile.changePage('Application.html', {
-		 reloadPage: true,
-		 reverse: false
-	     });
-	 });
-	 $('.ui-block-d').on('click', function(event) {
-	     event.preventDefault();
-	     $.mobile.changePage('Setting.html', {
-		 reloadPage: false,
-		 reverse: false
-	     });
-	 });
+                event.preventDefault();
+                $.mobile.changePage('Work.html', {
+                    reloadPage: true,
+                    reverse: false
+                });
+            });
+     $('.ui-block-d').on('click', function(event) {
+                event.preventDefault();
+                $.mobile.changePage('Application.html', {
+                    reloadPage: true,
+                    reverse: false
+                });
+            });
 
      });
 

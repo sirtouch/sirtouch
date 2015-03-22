@@ -71,6 +71,8 @@
                     <textarea class="EMCTinto" placeholder="（必填）" rows="" style="resize:none;outline:none;"></textarea>
                 </div>
                 <div style="display:none;">
+                    <input class="sessionid"
+                    name="sessionid" type="text">
                     <input class="content" name="content" type="text">
                 </div>
                 <p style="margin:0 1em;">
@@ -137,16 +139,26 @@
                     window.location.href = '../Contacts.html?to=secret,'+recieve+','+copy+','+secret;
                 });
                 $('.submit').on('click',function(event){
+                    event.preventDefault();
                     var topic = $('.topic').val().replace(/\s/g,"");
                     var textArea = $('textarea').val().replace(/\s/g,"");
                     var reciever = $('.reciever input').val().replace(/\s/g,"");
+                    var sessionid = $.cookie('token');
+                    $('.sessionid').val(sessionid);
                     $('.content').val(textArea);
                     if(reciever==""&&topic==""&&textArea==""){
                         alert("请填写完整");
-                        event.preventDefault();
-                        window.location.href = window.location.href;
+                    }else{
+                        var form = $('form');
+                        var formdata = new FormData();
+                        var response = mail.send(formdata);
+                        if(response){
+                            alert("发送成功");
+                        }else{
+                            alert("发送失败");
+                        }
                     }
-                })
+                })；
                 
             </script>
 	    </div>

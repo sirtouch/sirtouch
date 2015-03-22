@@ -185,7 +185,7 @@ Notice.prototype.sync = function()
     //     default:
     //         return [];
     // }
-    // return(json_str);
+    return(json_str);
 }
  
 File.prototype.share = function (path){
@@ -232,15 +232,15 @@ Attendance.prototype.getInfo = function()
 {
     //没数据返回空记录。例如：{"cleckin":"","cleckout":""}
     //var json_str = "{\"checkin\": \"2015-03-14 08:00:00\", \"checkout\": \"2015-03-14 18:00:00\"}";
-    var json_str = "[]";
-	$.ajax({url:"http://192.168.1.77/mobile/getinfo/",
-		data:{'sessionid':'bbbbf789b5024d1498176ec17c87219a'},
-		dataType:"json",
-		type:"GET",
-		async:false,
-		success:function(data){
-			json_str = data;
-		}})
+    var json_str = '{\"cleckin\":\"\",\"cleckout\":\"\"}';
+	// $.ajax({url:"http://192.168.1.77/mobile/getinfo/",
+	// 	data:{'sessionid':'bbbbf789b5024d1498176ec17c87219a'},
+	// 	dataType:"json",
+	// 	type:"GET",
+	// 	async:false,
+	// 	success:function(data){
+	// 		json_str = data;
+	// 	}})
 	//73cd154ec06f4e63aa7ddba88b00e878
     return(json_str);
 }
@@ -268,9 +268,17 @@ Attendance.prototype.getInfo = function()
     return null;
  }
  
- Mail.prototype.send = function(info)
+ Mail.prototype.send = function(formdata)
  {
-    return true
+    $.ajax({
+        type: "get",
+        url: "",
+        data: formdata,
+        success: function(data){
+
+        }
+    });
+    return true;
  }
  
  Mail.prototype.getFolderList = function()
