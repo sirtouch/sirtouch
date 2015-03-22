@@ -164,7 +164,7 @@ Attendance.prototype.getInfo = function()
  
  Mail.prototype.getMailData = function(id)
  {
-    var json_str = "{\"from\": \"lishujun@qq.com\", \"content\": \"sdfskajdfskdjfsdfj\", \"to\": \"58135482@qq.com\", \"attachment\": [{\"url\": \"http:\/\/www.csdn.net\/1.jpg\", \"name\": \"1.jpg\"}], \"time\": \"2014-01-12 12:00:00\", \"id\": \"100\", \"subject\": \"test\"}";
+    var json_str = "{\"from\": \"lishujun@qq.com\", \"content\": \"sdfskajdfskdjfsdfj\", \"to\": \"58135482@qq.com\", \"attachment\": [{\"url\": \"http:\/\/www.csdn.net\/1.jpg\", \"name\": \"1.jpg\"}], \"time\": \"2014-01-12 12:00:00\", \"id\": \"100\", \"subject\": \"test\",\"nextMailId\": \"101\"}";
     
     if(id == "100")
         return(json_str);
