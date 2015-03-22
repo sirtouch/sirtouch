@@ -170,26 +170,25 @@ Notice.prototype.sync = function()
  File.prototype.list = function (path)
  {
     //[{"path": "/公共资料", "type": "directory", "name": "公共资料", "size": ""}, {"path": "/商务团队", "type": "directory", "name": "商务团队", "size": ""}, {"path": "/存档文件", "type": "directory", "name": "存档文件", "size": ""}, {"path": "/对外共享", "type": "directory", "name": "对外共享", "size": ""}, {"path": "/>用户个人文件", "type": "directory", "name": "用户个人文件", "size": ""}, {"path": "/部署文件", "type": "directory", "name": "部署文件", "size": ""}, {"path": "/白皮书.pdf", "type": "file", "name": "白皮书.pdf", "size": "212007"}, {"path": "/监控服务.pdf", "type": "file", "name": "监控服务.pdf", "size": "3969629"}, {"path": "/讲演稿.pdf", "type": "file", "name": "讲演稿.pdf", "size": "3718187"}]
-    var json_str = ""[{\"path\": \"\/\u516c\u5171\u8d44\u6599\", \"type\": \"directory\", \"name\": \"\u516c\u5171\u8d44\u6599\", \"size\": \"\"}, {\"path\": \"\/\u5546\u52a1\u56e2\u961f\", \"type\": \"directory\", \"name\": \"\u5546\u52a1\u56e2\u961f\", \"size\": \"\"}, {\"path\": \"\/\u5b58\u6863\u6587\u4ef6\", \"type\": \"directory\", \"name\": \"\u5b58\u6863\u6587\u4ef6\", \"size\": \"\"}, {\"path\": \"\/\u5bf9\u5916\u5171\u4eab\", \"type\": \"directory\", \"name\": \"\u5bf9\u5916\u5171\u4eab\", \"size\": \"\"}, {\"path\": \"\/\u7528\u6237\u4e2a\u4eba\u6587\u4ef6\", \"type\": \"directory\", \"name\": \"\u7528\u6237\u4e2a\u4eba\u6587\u4ef6\", \"size\": \"\"}, {\"path\": \"\/\u90e8\u7f72\u6587\u4ef6\", \"type\": \"directory\", \"name\": \"\u90e8\u7f72\u6587\u4ef6\", \"size\": \"\"}, {\"path\": \"\/\u767d\u76ae\u4e66.pdf\", \"type\": \"file\", \"name\": \"\u767d\u76ae\u4e66.pdf\", \"size\": \"212007\"}, {\"path\": \"\/\u76d1\u63a7\u670d\u52a1.pdf\", \"type\": \"file\", \"name\": \"\u76d1\u63a7\u670d\u52a1.pdf\", \"size\": \"3969629\"}, {\"path\": \"\/\u8bb2\u6f14\u7a3f.pdf\", \"type\": \"file\", \"name\": \"\u8bb2\u6f14\u7a3f.pdf\", \"size\": \"3718187\"}]"";
-    /*switch(path)
-    {
-        case "/":
-            return ["/cloud", "/"+User.username];
+    var json_str = "[{\"path\": \"\/\u516c\u5171\u8d44\u6599\", \"type\": \"directory\", \"name\": \"\u516c\u5171\u8d44\u6599\", \"size\": \"\"}, {\"path\": \"\/\u5546\u52a1\u56e2\u961f\", \"type\": \"directory\", \"name\": \"\u5546\u52a1\u56e2\u961f\", \"size\": \"\"}, {\"path\": \"\/\u5b58\u6863\u6587\u4ef6\", \"type\": \"directory\", \"name\": \"\u5b58\u6863\u6587\u4ef6\", \"size\": \"\"}, {\"path\": \"\/\u5bf9\u5916\u5171\u4eab\", \"type\": \"directory\", \"name\": \"\u5bf9\u5916\u5171\u4eab\", \"size\": \"\"}, {\"path\": \"\/\u7528\u6237\u4e2a\u4eba\u6587\u4ef6\", \"type\": \"directory\", \"name\": \"\u7528\u6237\u4e2a\u4eba\u6587\u4ef6\", \"size\": \"\"}, {\"path\": \"\/\u90e8\u7f72\u6587\u4ef6\", \"type\": \"directory\", \"name\": \"\u90e8\u7f72\u6587\u4ef6\", \"size\": \"\"}, {\"path\": \"\/\u767d\u76ae\u4e66.pdf\", \"type\": \"file\", \"name\": \"\u767d\u76ae\u4e66.pdf\", \"size\": \"212007\"}, {\"path\": \"\/\u76d1\u63a7\u670d\u52a1.pdf\", \"type\": \"file\", \"name\": \"\u76d1\u63a7\u670d\u52a1.pdf\", \"size\": \"3969629\"}, {\"path\": \"\/\u8bb2\u6f14\u7a3f.pdf\", \"type\": \"file\", \"name\": \"\u8bb2\u6f14\u7a3f.pdf\", \"size\": \"3718187\"}]";
+    // switch(path)
+    // {
+    //     case "/":
+    //         return ["/cloud", "/"+User.username];
         
-        case "/cloud":
-            return [];
+    //     case "/cloud":
+    //         return [];
             
-        case "/"+User.username:
-            return [];
+    //     case "/"+User.username:
+    //         return [];
             
-        default:
-            return [];
-    }*/
-    return(json_str);
- }
+    //     default:
+    //         return [];
+    // }
+    // return(json_str);
+}
  
-File.prototype.share = function (path)
-{
+File.prototype.share = function (path){
     var json_str = "{\"url\": \"http:\/\/sirself.sirbox.cn\/sir\/data\/public\/9c73dc.php\"}";
     return(json_str);
 }
