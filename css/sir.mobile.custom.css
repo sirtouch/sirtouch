@@ -323,6 +323,10 @@ body {
 {
     background:#ddd url(../images/icon-max-user.png) center center no-repeat; background-size:60%;
 }
+.ui-app-item a.ui-app-users i
+{
+    background: url(../images/icon-max-user.png) center center no-repeat; background-size:60%;
+}
 
 
 .ui-app-content .ui-app-item:last-child

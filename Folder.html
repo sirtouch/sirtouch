@@ -45,7 +45,8 @@
 
 	<div data-role="header" class="ui-header ui-bar-inherit">
         <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
-		<h1 class="ui-title" role="heading" aria-level="1">文档</h1>		
+		<h1 class="ui-title" role="heading" aria-level="1">文档</h1>
+        <a href="EditerMail.html" class="ui-btn-right ui-btn ui-icon-arrow-u ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Up</a>		
 		<!--<a href="#" data-rel="back" class="ui-btn-right ui-btn ui-icon-gear ui-btn-icon-notext ui-corner-all" data-role="button" role="button">User</a>-->
 	</div>
     <div class="ui-input-search-box">
@@ -55,6 +56,12 @@
         <ul class="ui-folder-listview">
 		</ul>
 	</div>
+    <div style="display:none">
+        <form class="upload-file">
+            <input type="text" name="path">
+            <input type="file" name="uploadFile">
+        </form>
+    </div>
 <script type="text/javascript">
     function getQueryString(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -89,7 +96,29 @@
         if($(this).find('i').attr('class')=="folder"){
             window.location.href = "Folder?path=" + $(this).attr('path');
         }
-    })
+    });
+    $('.ui-icon-arrow-u').on('click',function(){
+        if(path==""){
+            path = "/";
+            $('.upload-file').find('input').eq(0).val(path);
+        }else{
+            $('.upload-file').find('input').eq(0).val(path);
+        }
+        $('.upload-file').find('input').eq(1).trigger('click');
+        var up = $('.upload-file');
+        var form = new FormData(up);
+        $.ajax({
+            type: "post",
+            url: "",
+            data: formdata,
+            success: function(data){
+                alert('上传成功');
+            },
+            error: function(){
+
+            }
+        })
+    });
 </script>
     <!-- footer -->
 	<div data-role="footer" class="ui-footer ui-footer-fixed ui-bar-inherit">

@@ -73,19 +73,31 @@
                 </a>
             </div>
             <div class="ui-app-item">
-                <a class="ui-app-clock" href="Work.html">
+                <a class="ui-app-clock" href="#">
                     <i></i>
                     <b>考勤</b>
                 </a>
             </div>
+            <script type="text/javascript">
+                $('.ui-app-clock').on('click',function(event){
+                    event.preventDefault();
+                    window.location.href = 'Work.html';
+                });
+            </script>
             <div class="ui-app-item">
-                <a class="ui-app-setting" href="Contacts.html">
+                <a class="ui-app-users" href="#">
                     <i></i>
                     <b>通讯录</b>
                 </a>
             </div>
+            <script type="text/javascript">
+                $('.ui-app-users').on('click',function(event){
+                    event.preventDefault();
+                    window.location.href = 'Contacts.html?to=reciever,,,';
+                });
+            </script>
             <div class="ui-app-item">
-                <a class="ui-app-email" href="Setting.html">
+                <a class="ui-app-setting" href="Setting.html">
                     <i></i>
                     <b>设置</b>
                 </a>

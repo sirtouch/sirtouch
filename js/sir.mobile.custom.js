@@ -276,6 +276,9 @@ Attendance.prototype.getInfo = function()
         data: formdata,
         success: function(data){
 
+        },
+        error: function(){
+            
         }
     });
     return true;
