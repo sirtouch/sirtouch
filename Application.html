@@ -81,7 +81,10 @@
             <script type="text/javascript">
                 $('.ui-app-clock').on('click',function(event){
                     event.preventDefault();
-                    window.location.href = 'Work.html';
+                    $.mobile.changePage('Work.html', {
+                        reloadPage: true,
+                        reverse: false
+                    });
                 });
             </script>
             <div class="ui-app-item">

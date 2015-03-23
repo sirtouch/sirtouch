@@ -116,6 +116,13 @@
 		 window.location.href = 'Notice-Detail.html?id=' + $(this).attr('data-id');
 	     });
 	 });
+	 $('.ui-block-a').on('click', function(event) {
+	            event.preventDefault();
+	            $.mobile.changePage('index.html', {
+	            reloadPage: true,
+	            reverse: false
+	            });
+	        });
 	 $('.ui-block-b').on('click', function(event) {
 	            event.preventDefault();
 	            $.mobile.changePage('Folder.html?path=', {

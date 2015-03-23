@@ -62,7 +62,7 @@
 
 
             <div data-role="header" class="ui-header ui-bar-inherit">
-                <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
+                <a data-rel="" class=" ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
 	            <h1 class="ui-title" role="heading" aria-level="1">收件箱</h1>
                 <a href="EditerMail.html" class="ui-btn-right ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Add</a>
             </div>            
@@ -70,7 +70,6 @@
 	        <div role="main" class="ui-content ui-index-content ui-padding0px-content">                
                 <div class="ReceAll"></div>
             </div>
-            </script>
             <!-- footer -->
     
             <div data-role="footer" class="ui-footer ui-footer-fixed ui-bar-inherit">
@@ -144,6 +143,13 @@
                         window.location.href = 'MailConts.html?id='+$(this).attr('data-id');
                     });
                 });
+                $('.ui-icon-back').on('click',function(){
+                    event.preventDefault();
+                    $.mobile.changePage('../index.html', {
+                        reloadPage: true,
+                        reverse: false
+                    });
+                })
             </script>
 	    </div>
 
