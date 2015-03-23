@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,6 +38,10 @@
 <div data-role="page" class="ui-page ui-page-theme-a">
     
     <script>
+        $(document).bind("mobileinit", function()  {  
+            $.mobile.defaultPageTransition = 'none';  
+            $.mobile.defaultDialogTransition = 'none';  
+        });
         if ($.cookie('token') == 'null' || $.cookie('token') == undefined) {
             window.location.href = 'Login.html';
         }
@@ -69,6 +73,7 @@
         if (r != null) return unescape(r[2]); return null;
     }
     var path = getQueryString('path');
+    alert(path);
     var file = new File();
     var response = JSON.parse(file.list(path));
     var FolderList = "";
@@ -92,9 +97,14 @@
     });
     $('.ui-folder-listview').append(FolderList);
     $('.ui-folder-listview').append(FileList);
-    $('.ui-folder-listview li a').eq(0).on('click',function(){
+    $('.ui-folder-listview li a').on('click',function(event){
         if($(this).find('i').attr('class')=="folder"){
+            event.preventDefault();
             window.location.href = "Folder?path=" + $(this).attr('path');
+            /*$.mobile.changePage("Folder?path=" + $(this).attr('path'), {
+                    reloadPage: false,
+                    reverse: false
+            });*/
         }
     });
     $('.ui-icon-arrow-u').on('click',function(){
