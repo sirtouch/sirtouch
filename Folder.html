@@ -162,7 +162,7 @@
             });
             $('.share').on('click',function(){
                 var link = JSON.parse(file.share($(this).siblings('a').attr('path')));
-                $('.url').html(link.url);
+                $('.url').val(link.url);
             })
 </script>          
 
@@ -170,7 +170,7 @@
     <div id="share-popup" class="ui-content public-layout" data-role="popup" data-theme="a">
         <ul data-role="listview" class="ui-listview ui-listview-inset ui-corner-all">
             <li><a class="ui-btn ui-btn-icon-right ui-icon-action">分享(复制下列链接)</a></li>
-            <li class="url"></li>
+            <input style="outline:none" type="text" class="url"></li>
         </ul>
         <p></p>
     </div>

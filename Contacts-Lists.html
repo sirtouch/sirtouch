@@ -130,7 +130,6 @@
             })
          });
          $('.ui-btn-icon-left').on('click',function(){
-            alert(1);
             if($(this).siblings('input').attr('checked')=='checked'){
                 $(this).siblings('input').attr('checked','undefined');
             }else{
@@ -196,75 +195,65 @@
     <!-- editor -->
     <div id="editor-contact-list" class="ui-content public-layout" data-role="popup" data-theme="a">
         <ul data-role="listview" class="ui-listview ui-listview-inset ui-corner-all">
-            <li><a href="#" class="confirm ui-btn ui-btn-icon-right ui-icon-refresh">确定</a></li>
-			<li><a href="#" class="selAll ui-btn ui-btn-icon-right ui-icon-check">全选</a></li>
-            <li><a href="#" class="selOps ui-btn ui-btn-icon-right ui-icon-minus">反选</a></li>
+            <li class=""><a class="confirm ui-btn ui-btn-icon-right ui-icon-refresh">确定</a></li>
+			<li class=""><a class="selAll ui-btn ui-btn-icon-right ui-icon-check">全选</a></li>
+            <li class=""><a class="selOps ui-btn ui-btn-icon-right ui-icon-minus">反选</a></li>
         </ul>
     </div>
     <script>
         var emailTo = "";
-        $('.confirm').on('click',function(){
-            $('.confirm').unbind('click');
+        $('.confirm').on('click',function(event){
+            event.preventDefault();
             var all = $('.checkbox');
             $.each(all,function(index,element){
                 if($(this).siblings('label').attr('class')=="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-on"){
-                    $(this).attr("checked","checked");
-                }
-                if(emailTo==""){
-                    if(index == 0){
+                    if(emailTo==""){
                         emailTo += $(this).parents('li').find('.editemail').html();
                     }else{
                         emailTo += ("/"+$(this).parents('li').find('.editemail').html());
                     }
-                }
+                }else{
+                }        
             });
             if(To == "reciever"){
-                    if(recieve == ""){
-                        recieve += emailTo;
-                    }else{
-                        recieve += ("/"+emailTo);
-                    }
-                }else if(To == "copy"){
-                    if(copy == ""){
-                        copy += emailTo;
-                    }else{
-                        copy += ("/"+emailTo);
-                    }
-                }else if(To == "secret"){
-                    if(secret == ""){
-                        secret += emailTo;
-                    }else{
-                        secret += ("/"+emailTo);
-                    }
+                if(recieve == ""){
+                    recieve += emailTo;
+                }else{
+                    recieve += ("/"+emailTo);
                 }
+            }else if(To == "copy"){
+                if(copy == ""){
+                    copy += emailTo;
+                }else{
+                    copy += ("/"+emailTo);
+                }
+            }else if(To == "secret"){
+                if(secret == ""){
+                    secret += emailTo;
+                }else{
+                    secret += ("/"+emailTo);
+                }
+            }
             EmailTo = "mail/EditerMail.html?email="+recieve+','+copy+','+secret;
             window.location.href = EmailTo;
         })
         $('.selAll').on('click',function(){
             $.each($('.checkbox'),function(index,element){
-                $(this).siblings('label').trigger('click');
-                if($(this).attr("checked")=="checked"){
-                    
-                }else{
-                    $(this).attr("checked","checked");
-                    $('.in').trigger('click');
-                }
-                
-                
+                $(this).siblings('label').attr('class',"ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-on");
+                $('.in').trigger('click');
             });
         })
-        $('.selOps').on('click',function(){
+        $('.selOps').on('click',function(event){
             var all = $('.checkbox');
             $.each(all,function(index,element){
-                if($(this).attr("checked") == "checked"){
-                    $(this).siblings('label').trigger('click');
-                    $(this).attr("checked","undefined");
+                if($(this).siblings('label').attr('class')=="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-on"){
+                    $(this).siblings('label').attr('class',"ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-off");
                     $('.in').trigger('click');
                 }else{
-                    $(this).siblings('label').trigger('click');
-                    $(this).attr("checked","checked");
+                    $(this).siblings('label').attr('class',"ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-on");
                     $('.in').trigger('click');
                 }
+                
             });
         })
         

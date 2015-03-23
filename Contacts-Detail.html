@@ -145,7 +145,7 @@
         $.each(Info.mobile,function(index,element){
             userContact += '<li>';
             userContact += '<b>移动电话: </b><a class="digital" href="#">'+element+'</a>';
-            userContact += '<span><a class="message ui-link" href="#">message</a><a class="tel ui-link" href="#">tel</a></span>';
+            userContact += '<span><a class="message ui-link" href="sms:'+element+'">message</a><a class="tel ui-link" href="tel:'+element+'">tel</a></span>';
             userContact += '</li>';
         });
         
@@ -153,7 +153,7 @@
         $.each(Info.phone,function(index,element){
             userContact += '<li>';
             userContact += '<b>固定电话: </b><a class="digital" href="#">'+element+'</a>';
-            userContact += '<span><a class="tel ui-link" href="#">tel</a></span>';
+            userContact += '<span><a class="tel ui-link" href="tel:"'+element+'">tel</a></span>';
             userContact += '</li>';
         })
         
@@ -165,19 +165,7 @@
             userContact += '</li>';
         });
         
-        $('.ui-user-infor').append(userContact);
-        $('.tel').on('click',function (event){
-            event.preventDefault();
-            var number = $(this).parents('li').find('.digital').html();
-            $(this).parents('li').find('.digital').attr('href','tel:'+number);
-            $(this).parents('li').find('.digital').trigger('click');
-        }); 
-        $('.message').on('click',function (event){
-            event.preventDefault();
-            var number = $(this).parents('li').find('.digital').html();
-            $(this).parents('li').find('.digital').attr('href','sms:'+number);
-            $(this).parents('li').find('.digital').trigger('click');
-        });      
+        $('.ui-user-infor').append(userContact);      
         $('.email').on('click', function (event) {
             event.preventDefault();
             window.location.href = 'mail/EditerMail.html?email=' + $(this).parents('li').find('.digital').html() + ',,';
