@@ -50,9 +50,8 @@
             <div data-role="header" class="ui-header ui-bar-inherit">
                 <a data-rel="back" class=" ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Back</a>
 	            <h1 class="ui-title" role="heading" aria-level="1"></h1>
-                <a href="#" class="nextMail ui-btn-right ui-btn ui-icon-carat-r ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Next</a>
-            </div> 
-            <div class="turnB" style="display:none;"></div>           
+                <a class="nextMail ui-btn-right ui-btn ui-icon-carat-r ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Next</a>
+            </div>            
 
 	        <div role="main" class="ui-content ui-index-content ui-padding0px-content">
                 <table class="MConts" cellpadding="0" cellspacing="0">
@@ -136,5 +135,9 @@
             var nextid = maildetail.nextMailId;
             window.location.href = 'MailConts.html?id='+nextid;
         });
+        $('.ui-icon-back').on('click',function(event){
+            event.preventDefault();
+            window.location.href = '../index.html';
+        })
     </script>
 </html>

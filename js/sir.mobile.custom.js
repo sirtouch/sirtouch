@@ -264,6 +264,8 @@ Attendance.prototype.getInfo = function()
     
     if(id == 100)
         return(json_str);
+    if(id == 101)
+        return(json_str);
     
     return null;
  }
@@ -278,7 +280,7 @@ Attendance.prototype.getInfo = function()
 
         },
         error: function(){
-            
+
         }
     });
     return true;
