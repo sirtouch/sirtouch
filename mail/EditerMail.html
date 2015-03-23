@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -158,6 +158,11 @@
                             alert("发送失败");
                         }
                     }
+                })
+                
+                $('.ui-icon-back').on('click',function(event){
+                    event.preventDefault();
+                    window.location.href = '../index.html';
                 })
                 
             </script>
